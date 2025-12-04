@@ -1,6 +1,6 @@
 // Copyright (c) 2016, SolidCP
 // SolidCP is distributed under the Creative Commons Share-alike license
-// 
+//
 // SolidCP is a fork of WebsitePanel:
 // Copyright (c) 2015, Outercurve Foundation.
 // All rights reserved.
@@ -30,14 +30,14 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE)  ARISING  IN  ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Web.Services;
 using System.Web.Services.Protocols;
+using Microsoft.Web.Services3;
 using SolidCP.Providers;
 using SolidCP.Providers.Common;
 using SolidCP.Providers.HostedSolution;
 using SolidCP.Providers.ResultObjects;
-using Microsoft.Web.Services3;
 
 namespace SolidCP.Server
 {
@@ -53,7 +53,6 @@ namespace SolidCP.Server
             get { return (IBlackBerry)Provider; }
         }
 
-
         [WebMethod, SoapHeader("settings")]
         public ResultObject CreateBlackBerryUser(string primaryEmailAddress)
         {
@@ -66,16 +65,24 @@ namespace SolidCP.Server
             return BlackBerryProvider.DeleteBlackBerryUser(primaryEmailAddress);
         }
 
-        [WebMethod, SoapHeader("settings")] 
+        [WebMethod, SoapHeader("settings")]
         public BlackBerryUserStatsResult GetBlackBerryUserStats(string primaryEmailAddress)
         {
             return BlackBerryProvider.GetBlackBerryUserStats(primaryEmailAddress);
         }
 
-        [WebMethod, SoapHeader("settings")] 
-        public ResultObject SetActivationPasswordWithExpirationTime(string primaryEmailAddress, string password, int time)
+        [WebMethod, SoapHeader("settings")]
+        public ResultObject SetActivationPasswordWithExpirationTime(
+            string primaryEmailAddress,
+            string password,
+            int time
+        )
         {
-            return BlackBerryProvider.SetActivationPasswordWithExpirationTime(primaryEmailAddress, password, time);
+            return BlackBerryProvider.SetActivationPasswordWithExpirationTime(
+                primaryEmailAddress,
+                password,
+                time
+            );
         }
 
         [WebMethod, SoapHeader("settings")]
@@ -89,6 +96,5 @@ namespace SolidCP.Server
         {
             return BlackBerryProvider.DeleteDataFromBlackBerryDevice(primaryEmailAddress);
         }
-                
     }
 }

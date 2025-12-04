@@ -1,6 +1,6 @@
 // Copyright (c) 2016, SolidCP
 // SolidCP is distributed under the Creative Commons Share-alike license
-// 
+//
 // SolidCP is a fork of WebsitePanel:
 // Copyright (c) 2015, Outercurve Foundation.
 // All rights reserved.
@@ -31,17 +31,16 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using System;
+using System.Collections;
+using System.ComponentModel;
 using System.Data;
 using System.Web;
-using System.Collections;
 using System.Web.Services;
 using System.Web.Services.Protocols;
-using System.ComponentModel;
 using Microsoft.Web.Services3;
-
-using SolidCP.Server.Utils;
 using SolidCP.Providers;
 using SolidCP.Providers.Database;
+using SolidCP.Server.Utils;
 
 namespace SolidCP.Server
 {
@@ -72,7 +71,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' CheckConnectivity", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' CheckConnectivity", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -89,7 +91,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ExecuteSqlQuery", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ExecuteSqlQuery", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -105,40 +110,69 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ExecuteSqlNonQuery", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ExecuteSqlNonQuery", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
 
         [WebMethod, SoapHeader("settings")]
-        public DataSet ExecuteSqlQuerySafe(string databaseName, string username, string password, string commandText)
+        public DataSet ExecuteSqlQuerySafe(
+            string databaseName,
+            string username,
+            string password,
+            string commandText
+        )
         {
             try
             {
                 Log.WriteStart("'{0}' ExecuteSqlQuerySafe", ProviderSettings.ProviderName);
-                DataSet result = DatabaseProvider.ExecuteSqlQuerySafe(databaseName, username, password, commandText);
+                DataSet result = DatabaseProvider.ExecuteSqlQuerySafe(
+                    databaseName,
+                    username,
+                    password,
+                    commandText
+                );
                 Log.WriteEnd("'{0}' ExecuteSqlQuerySafe", ProviderSettings.ProviderName);
                 return result;
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ExecuteSqlQuerySafe", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ExecuteSqlQuerySafe", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
 
         [WebMethod, SoapHeader("settings")]
-        public void ExecuteSqlNonQuerySafe(string databaseName, string username, string password, string commandText)
+        public void ExecuteSqlNonQuerySafe(
+            string databaseName,
+            string username,
+            string password,
+            string commandText
+        )
         {
             try
             {
                 Log.WriteStart("'{0}' ExecuteSqlNonQuerySafe", ProviderSettings.ProviderName);
-                DatabaseProvider.ExecuteSqlNonQuerySafe(databaseName, username, password, commandText);
+                DatabaseProvider.ExecuteSqlNonQuerySafe(
+                    databaseName,
+                    username,
+                    password,
+                    commandText
+                );
                 Log.WriteEnd("'{0}' ExecuteSqlNonQuerySafe", ProviderSettings.ProviderName);
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ExecuteSqlNonQuerySafe", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ExecuteSqlNonQuerySafe", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -157,7 +191,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DatabaseExists", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DatabaseExists", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -174,7 +211,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetDatabases", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetDatabases", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -191,7 +231,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetDatabase", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetDatabase", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -207,7 +250,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' CreateDatabase", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' CreateDatabase", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -223,7 +269,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UpdateDatabase", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UpdateDatabase", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -239,7 +288,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteDatabase", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteDatabase", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -255,7 +307,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' TruncateDatabase", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' TruncateDatabase", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -272,7 +327,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetTempFileBinaryChunk", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetTempFileBinaryChunk", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -289,7 +347,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' AppendTempFileBinaryChunk", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' AppendTempFileBinaryChunk", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -300,13 +361,20 @@ namespace SolidCP.Server
             try
             {
                 Log.WriteStart("'{0}' BackupDatabase", ProviderSettings.ProviderName);
-                string result = DatabaseProvider.BackupDatabase(databaseName, backupName, zipBackup);
+                string result = DatabaseProvider.BackupDatabase(
+                    databaseName,
+                    backupName,
+                    zipBackup
+                );
                 Log.WriteEnd("'{0}' BackupDatabase", ProviderSettings.ProviderName);
                 return result;
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' BackupDatabase", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' BackupDatabase", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -322,7 +390,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' RestoreDatabase", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' RestoreDatabase", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -341,7 +412,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UserExists", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UserExists", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -391,7 +465,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' CreateUser", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' CreateUser", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -407,7 +484,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UpdateUser", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UpdateUser", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -423,7 +503,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteUser", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteUser", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -439,7 +522,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ChangeUserPassword", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ChangeUserPassword", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }

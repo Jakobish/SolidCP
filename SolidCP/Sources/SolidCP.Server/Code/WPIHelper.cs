@@ -40,8 +40,8 @@ using System.Text;
 using System.Threading;
 using Microsoft.Web.Deployment;
 using Microsoft.Web.PlatformInstaller;
-using Installer = Microsoft.Web.PlatformInstaller.Installer;
 using DeploymentParameterWPI = Microsoft.Web.PlatformInstaller.DeploymentParameter;
+using Installer = Microsoft.Web.PlatformInstaller.Installer;
 
 namespace SolidCP.Server.Code
 {
@@ -68,7 +68,7 @@ namespace SolidCP.Server.Code
         private string _LogFileDirectory = string.Empty;
         private string _resourceLanguage = DeafultLanguage;
         private const DeploymentWellKnownTag databaseEngineTags =
-                    DeploymentWellKnownTag.Sql |
+            DeploymentWellKnownTag.Sql
                     DeploymentWellKnownTag.MySql |
                     DeploymentWellKnownTag.SqLite |
                     DeploymentWellKnownTag.VistaDB |

@@ -1,6 +1,6 @@
 // Copyright (c) 2016, SolidCP
 // SolidCP is distributed under the Creative Commons Share-alike license
-// 
+//
 // SolidCP is a fork of WebsitePanel:
 // Copyright (c) 2015, Outercurve Foundation.
 // All rights reserved.
@@ -31,14 +31,13 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using System;
+using System.Collections;
+using System.ComponentModel;
 using System.Data;
 using System.Web;
-using System.Collections;
 using System.Web.Services;
 using System.Web.Services.Protocols;
-using System.ComponentModel;
 using Microsoft.Web.Services3;
-
 using SolidCP.Providers;
 using SolidCP.Providers.FTP;
 using SolidCP.Server.Utils;
@@ -72,7 +71,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ChangeSiteState", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ChangeSiteState", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -89,7 +91,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetSiteState", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetSiteState", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -106,7 +111,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' SiteIdExists", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' SiteIdExists", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -157,7 +165,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' CreateSite", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' CreateSite", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -173,7 +184,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UpdateSite", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UpdateSite", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -189,7 +203,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteSite", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteSite", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -209,7 +226,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' AccountExists", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' AccountExists", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -226,7 +246,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetAccounts", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetAccounts", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -243,7 +266,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetAccount", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetAccount", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -259,7 +285,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' CreateAccount", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' CreateAccount", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -275,7 +304,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UpdateAccount", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UpdateAccount", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -291,7 +323,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteAccount", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteAccount", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }

@@ -1,6 +1,6 @@
 // Copyright (c) 2016, SolidCP
 // SolidCP is distributed under the Creative Commons Share-alike license
-// 
+//
 // SolidCP is a fork of WebsitePanel:
 // Copyright (c) 2015, Outercurve Foundation.
 // All rights reserved.
@@ -31,23 +31,22 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using System;
-using System.Data;
-using System.Web;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Web;
 using System.Web.Services;
 using System.Web.Services.Protocols;
-using System.ComponentModel;
-using Microsoft.Web.Services3;
-
-using SolidCP.Providers;
-using SolidCP.Providers.Web;
-using SolidCP.Server.Utils;
-using SolidCP.Providers.ResultObjects;
-using SolidCP.Providers.WebAppGallery;
-using SolidCP.Providers.Common;
 using Microsoft.Web.Administration;
 using Microsoft.Web.Management.Server;
+using Microsoft.Web.Services3;
+using SolidCP.Providers;
+using SolidCP.Providers.Common;
+using SolidCP.Providers.ResultObjects;
+using SolidCP.Providers.Web;
+using SolidCP.Providers.WebAppGallery;
+using SolidCP.Server.Utils;
 
 namespace SolidCP.Server
 {
@@ -77,7 +76,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ChangeSiteState", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ChangeSiteState", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -94,7 +96,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetSiteState", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetSiteState", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -128,7 +133,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetSitesAccounts", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetSitesAccounts", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -145,7 +153,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' SiteIdExists", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' SiteIdExists", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -196,7 +207,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetSiteBindings", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetSiteBindings", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -213,7 +227,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' CreateSite", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' CreateSite", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -229,13 +246,20 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UpdateSite", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UpdateSite", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
 
         [WebMethod, SoapHeader("settings")]
-        public void UpdateSiteBindings(string siteId, ServerBinding[] bindings, bool emptyBindingsAllowed)
+        public void UpdateSiteBindings(
+            string siteId,
+            ServerBinding[] bindings,
+            bool emptyBindingsAllowed
+        )
         {
             try
             {
@@ -245,7 +269,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UpdateSiteBindings", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UpdateSiteBindings", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -261,7 +288,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteSite", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteSite", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -278,7 +308,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ChangeAppPoolState", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ChangeAppPoolState", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -295,7 +328,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetAppPoolState", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetAppPoolState", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -315,7 +351,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' VirtualDirectoryExists", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' VirtualDirectoryExists", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -332,7 +371,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetVirtualDirectories", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetVirtualDirectories", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -349,7 +391,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetVirtualDirectory", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetVirtualDirectory", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -365,12 +410,13 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' CreateVirtualDirectory", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' CreateVirtualDirectory", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
-
-
 
         [WebMethod, SoapHeader("settings")]
         public void UpdateVirtualDirectory(string siteId, WebVirtualDirectory directory)
@@ -383,7 +429,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UpdateVirtualDirectory", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UpdateVirtualDirectory", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -399,15 +448,13 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteVirtualDirectory", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteVirtualDirectory", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
-
-
-
-
-
 
         [WebMethod, SoapHeader("settings")]
         public bool AppVirtualDirectoryExists(string siteId, string directoryName)
@@ -421,7 +468,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' AppVirtualDirectoryExists", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' AppVirtualDirectoryExists", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -438,7 +488,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetAppVirtualDirectories", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetAppVirtualDirectories", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -449,13 +502,19 @@ namespace SolidCP.Server
             try
             {
                 Log.WriteStart("'{0}' GetAppVirtualDirectory", ProviderSettings.ProviderName);
-                WebAppVirtualDirectory result = WebProvider.GetAppVirtualDirectory(siteId, directoryName);
+                WebAppVirtualDirectory result = WebProvider.GetAppVirtualDirectory(
+                    siteId,
+                    directoryName
+                );
                 Log.WriteEnd("'{0}' GetAppVirtualDirectory", ProviderSettings.ProviderName);
                 return result;
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetAppVirtualDirectory", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetAppVirtualDirectory", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -471,23 +530,41 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' CreateAppVirtualDirectory", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' CreateAppVirtualDirectory", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
 
         [WebMethod, SoapHeader("settings")]
-        public void CreateEnterpriseStorageAppVirtualDirectory(string siteId, WebAppVirtualDirectory directory)
+        public void CreateEnterpriseStorageAppVirtualDirectory(
+            string siteId,
+            WebAppVirtualDirectory directory
+        )
         {
             try
             {
-                Log.WriteStart("'{0}' CreateEnterpriseStorageAppVirtualDirectory", ProviderSettings.ProviderName);
+                Log.WriteStart(
+                    "'{0}' CreateEnterpriseStorageAppVirtualDirectory",
+                    ProviderSettings.ProviderName
+                );
                 WebProvider.CreateEnterpriseStorageAppVirtualDirectory(siteId, directory);
-                Log.WriteEnd("'{0}' CreateEnterpriseStorageAppVirtualDirectory", ProviderSettings.ProviderName);
+                Log.WriteEnd(
+                    "'{0}' CreateEnterpriseStorageAppVirtualDirectory",
+                    ProviderSettings.ProviderName
+                );
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' CreateEnterpriseStorageAppVirtualDirectory", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format(
+                        "'{0}' CreateEnterpriseStorageAppVirtualDirectory",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
                 throw;
             }
         }
@@ -503,7 +580,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UpdateAppVirtualDirectory", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UpdateAppVirtualDirectory", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -519,7 +599,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteAppVirtualDirectory", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteAppVirtualDirectory", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -538,7 +621,13 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' IsFrontPageSystemInstalled", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format(
+                        "'{0}' IsFrontPageSystemInstalled",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
                 throw;
             }
         }
@@ -555,7 +644,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' IsFrontPageInstalled", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' IsFrontPageInstalled", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -572,7 +664,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' InstallFrontPage", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' InstallFrontPage", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -588,7 +683,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UninstallFrontPage", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UninstallFrontPage", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -604,7 +702,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ChangeFrontPagePassword", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ChangeFrontPagePassword", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -623,7 +724,13 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' IsColdFusionSystemInstalled", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format(
+                        "'{0}' IsColdFusionSystemInstalled",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
                 throw;
             }
         }
@@ -641,7 +748,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GrantWebSiteAccess", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GrantWebSiteAccess", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -659,7 +769,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' InstallSecuredFolders", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' InstallSecuredFolders", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -675,7 +788,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UninstallSecuredFolders", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UninstallSecuredFolders", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -692,7 +808,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetFolders", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetFolders", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -725,7 +844,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UpdateFolder", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UpdateFolder", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -741,7 +863,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteFolder", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteFolder", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -793,7 +918,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UpdateUser", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UpdateUser", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -809,7 +937,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteUser", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteUser", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -861,7 +992,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UpdateGroup", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UpdateGroup", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -877,7 +1011,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteGroup", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteGroup", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -897,13 +1034,15 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetHeliconApeStatus", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetHeliconApeStatus", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
 
             return status;
         }
-
 
         [WebMethod, SoapHeader("settings")]
         public void InstallHeliconApe(string ServiceId)
@@ -916,11 +1055,13 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' InstallHeliconApe", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' InstallHeliconApe", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
-
 
         [WebMethod, SoapHeader("settings")]
         public void EnableHeliconApe(string siteId)
@@ -933,7 +1074,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' EnableHeliconApe", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' EnableHeliconApe", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -949,7 +1093,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DisableHeliconApe", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DisableHeliconApe", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -966,7 +1113,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetHeliconApeFolders", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetHeliconApeFolders", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -983,11 +1133,13 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetHeliconApeFolder", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetHeliconApeFolder", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
-
 
         [WebMethod, SoapHeader("settings")]
         public HtaccessFolder GetHeliconApeFolder(string siteId, string folderPath)
@@ -1001,7 +1153,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetHeliconApeFolder", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetHeliconApeFolder", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -1017,7 +1172,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UpdateHeliconApeFolder", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UpdateHeliconApeFolder", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -1033,7 +1191,13 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UpdateHeliconApeHttpdFolder", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format(
+                        "'{0}' UpdateHeliconApeHttpdFolder",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
                 throw;
             }
         }
@@ -1049,7 +1213,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteHeliconApeFolder", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteHeliconApeFolder", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -1068,7 +1235,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GeHeliconApetUsers", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GeHeliconApetUsers", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -1085,7 +1255,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetHeliconApeUser", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetHeliconApeUser", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -1101,7 +1274,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UpdateHeliconApeUser", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UpdateHeliconApeUser", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -1117,7 +1293,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteHeliconApeUser", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteHeliconApeUser", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -1136,7 +1315,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetHeliconApeGroups", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetHeliconApeGroups", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -1153,7 +1335,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetHeliconApeGroup", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetHeliconApeGroup", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -1169,42 +1354,70 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UpdateHeliconApeGroup", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UpdateHeliconApeGroup", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
 
-		[WebMethod, SoapHeader("settings")]
-		public void GrantWebDeployPublishingAccess(string siteId, string accountName, string accountPassword)
-		{
-			try
-			{
-				Log.WriteStart("'{0}' GrantWebDeployPublishingAccess", ProviderSettings.ProviderName);
-				WebProvider.GrantWebDeployPublishingAccess(siteId, accountName, accountPassword);
-				Log.WriteEnd("'{0}' GrantWebDeployPublishingAccess", ProviderSettings.ProviderName);
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("'{0}' GrantWebDeployPublishingAccess", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
+        [WebMethod, SoapHeader("settings")]
+        public void GrantWebDeployPublishingAccess(
+            string siteId,
+            string accountName,
+            string accountPassword
+        )
+        {
+            try
+            {
+                Log.WriteStart(
+                    "'{0}' GrantWebDeployPublishingAccess",
+                    ProviderSettings.ProviderName
+                );
+                WebProvider.GrantWebDeployPublishingAccess(siteId, accountName, accountPassword);
+                Log.WriteEnd("'{0}' GrantWebDeployPublishingAccess", ProviderSettings.ProviderName);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format(
+                        "'{0}' GrantWebDeployPublishingAccess",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
+                throw;
+            }
+        }
 
-		[WebMethod, SoapHeader("settings")]
-		public void RevokeWebDeployPublishingAccess(string siteId, string accountName)
-		{
-			try
-			{
-				Log.WriteStart("'{0}' RevokeWebDeployPublishingAccess", ProviderSettings.ProviderName);
-				WebProvider.RevokeWebDeployPublishingAccess(siteId, accountName);
-				Log.WriteEnd("'{0}' RevokeWebDeployPublishingAccess", ProviderSettings.ProviderName);
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("'{0}' RevokeWebDeployPublishingAccess", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
+        [WebMethod, SoapHeader("settings")]
+        public void RevokeWebDeployPublishingAccess(string siteId, string accountName)
+        {
+            try
+            {
+                Log.WriteStart(
+                    "'{0}' RevokeWebDeployPublishingAccess",
+                    ProviderSettings.ProviderName
+                );
+                WebProvider.RevokeWebDeployPublishingAccess(siteId, accountName);
+                Log.WriteEnd(
+                    "'{0}' RevokeWebDeployPublishingAccess",
+                    ProviderSettings.ProviderName
+                );
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format(
+                        "'{0}' RevokeWebDeployPublishingAccess",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
+                throw;
+            }
+        }
 
         [WebMethod, SoapHeader("settings")]
         public void DeleteHeliconApeGroup(string siteId, string groupName)
@@ -1217,12 +1430,13 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteHeliconApeGroup", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteHeliconApeGroup", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
-
-    
 
         #endregion
 
@@ -1240,24 +1454,40 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetZooApplications", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetZooApplications", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
 
         [WebMethod, SoapHeader("settings")]
-        public StringResultObject SetZooEnvironmentVariable(string siteId, string appName, string envName, string envValue)
+        public StringResultObject SetZooEnvironmentVariable(
+            string siteId,
+            string appName,
+            string envName,
+            string envValue
+        )
         {
             try
             {
                 Log.WriteStart("'{0}' SetZooEnvironmentVariable", ProviderSettings.ProviderName);
-                StringResultObject result = WebProvider.SetZooEnvironmentVariable(siteId, appName, envName, envValue);
+                StringResultObject result = WebProvider.SetZooEnvironmentVariable(
+                    siteId,
+                    appName,
+                    envName,
+                    envValue
+                );
                 Log.WriteEnd("'{0}' SetZooEnvironmentVariable", ProviderSettings.ProviderName);
                 return result;
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' SetZooEnvironmentVariable", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' SetZooEnvironmentVariable", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -1274,10 +1504,12 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' SetZooConsoleEnabled", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' SetZooConsoleEnabled", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
-            
         }
 
         [WebMethod, SoapHeader("settings")]
@@ -1292,7 +1524,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' SetZooConsoleDisabled", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' SetZooConsoleDisabled", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -1308,7 +1543,7 @@ namespace SolidCP.Server
             {
                 Log.WriteStart("CheckLoadUserProfile");
 
-                bool bResult =  WebProvider.CheckLoadUserProfile();
+                bool bResult = WebProvider.CheckLoadUserProfile();
 
                 Log.WriteEnd("CheckLoadUserProfile");
 
@@ -1320,7 +1555,7 @@ namespace SolidCP.Server
                 throw;
             }
         }
-        
+
         [WebMethod, SoapHeader("settings")]
         public void EnableLoadUserProfile()
         {
@@ -1338,6 +1573,7 @@ namespace SolidCP.Server
                 throw;
             }
         }
+
         [WebMethod, SoapHeader("settings")]
         public void InitFeeds(int UserId, string[] feeds)
         {
@@ -1360,16 +1596,18 @@ namespace SolidCP.Server
             try
             {
                 Log.WriteStart("'{0}' SetResourceLanguage", ProviderSettings.ProviderName);
-                WebProvider.SetResourceLanguage(UserId,resourceLanguage);
+                WebProvider.SetResourceLanguage(UserId, resourceLanguage);
                 Log.WriteEnd("'{0}' SetResourceLanguage", ProviderSettings.ProviderName);
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' SetResourceLanguage", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' SetResourceLanguage", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
-
 
         [WebMethod, SoapHeader("settings")]
         public GalleryLanguagesResult GetGalleryLanguages(int UserId)
@@ -1383,260 +1621,375 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GalleryLanguagesResult", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GalleryLanguagesResult", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
 
         [WebMethod, SoapHeader("settings")]
-		public GalleryCategoriesResult GetGalleryCategories(int UserId)
-		{
-			try
-			{
-				Log.WriteStart("'{0}' GalleryCategoriesResult", ProviderSettings.ProviderName);
+        public GalleryCategoriesResult GetGalleryCategories(int UserId)
+        {
+            try
+            {
+                Log.WriteStart("'{0}' GalleryCategoriesResult", ProviderSettings.ProviderName);
                 GalleryCategoriesResult result = WebProvider.GetGalleryCategories(UserId);
-				Log.WriteEnd("'{0}' GalleryCategoriesResult", ProviderSettings.ProviderName);
-				return result;
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("'{0}' GalleryCategoriesResult", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
+                Log.WriteEnd("'{0}' GalleryCategoriesResult", ProviderSettings.ProviderName);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format("'{0}' GalleryCategoriesResult", ProviderSettings.ProviderName),
+                    ex
+                );
+                throw;
+            }
+        }
 
-		[WebMethod, SoapHeader("settings")]
+        [WebMethod, SoapHeader("settings")]
         public GalleryApplicationsResult GetGalleryApplications(int UserId, string categoryId)
-		{
-			try
-			{
-				Log.WriteStart("'{0}' GetGalleryApplications", ProviderSettings.ProviderName);
-                GalleryApplicationsResult result = WebProvider.GetGalleryApplications(UserId,categoryId);
-				Log.WriteEnd("'{0}' GetGalleryApplications", ProviderSettings.ProviderName);
-				return result;
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("'{0}' GetGalleryApplications", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
+        {
+            try
+            {
+                Log.WriteStart("'{0}' GetGalleryApplications", ProviderSettings.ProviderName);
+                GalleryApplicationsResult result = WebProvider.GetGalleryApplications(
+                    UserId,
+                    categoryId
+                );
+                Log.WriteEnd("'{0}' GetGalleryApplications", ProviderSettings.ProviderName);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format("'{0}' GetGalleryApplications", ProviderSettings.ProviderName),
+                    ex
+                );
+                throw;
+            }
+        }
 
         [WebMethod, SoapHeader("settings")]
         public GalleryApplicationsResult GetGalleryApplicationsFiltered(int UserId, string pattern)
         {
             try
             {
-                Log.WriteStart("'{0}' GetGalleryApplicationsFiltered", ProviderSettings.ProviderName);
-                GalleryApplicationsResult result = WebProvider.GetGalleryApplicationsFiltered(UserId,pattern);
+                Log.WriteStart(
+                    "'{0}' GetGalleryApplicationsFiltered",
+                    ProviderSettings.ProviderName
+                );
+                GalleryApplicationsResult result = WebProvider.GetGalleryApplicationsFiltered(
+                    UserId,
+                    pattern
+                );
                 Log.WriteEnd("'{0}' GetGalleryApplicationsFiltered", ProviderSettings.ProviderName);
                 return result;
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetGalleryApplicationsFiltered", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format(
+                        "'{0}' GetGalleryApplicationsFiltered",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
                 throw;
             }
         }
 
-
         [WebMethod, SoapHeader("settings")]
-		public bool IsMsDeployInstalled()
-		{
-			try
-			{
-				Log.WriteStart("'{0}' IsMsDeployInstalled", ProviderSettings.ProviderName);
-				bool result = WebProvider.IsMsDeployInstalled();
-				Log.WriteEnd("'{0}' IsMsDeployInstalled", ProviderSettings.ProviderName);
-				return result;
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("'{0}' IsMsDeployInstalled", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
+        public bool IsMsDeployInstalled()
+        {
+            try
+            {
+                Log.WriteStart("'{0}' IsMsDeployInstalled", ProviderSettings.ProviderName);
+                bool result = WebProvider.IsMsDeployInstalled();
+                Log.WriteEnd("'{0}' IsMsDeployInstalled", ProviderSettings.ProviderName);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format("'{0}' IsMsDeployInstalled", ProviderSettings.ProviderName),
+                    ex
+                );
+                throw;
+            }
+        }
 
         [WebMethod, SoapHeader("settings")]
         public GalleryApplicationResult GetGalleryApplication(int UserId, string id)
-		{
-			try
-			{
-				Log.WriteStart("'{0}' GetGalleryApplication", ProviderSettings.ProviderName);
-                GalleryApplicationResult result = WebProvider.GetGalleryApplication(UserId,id);
-				Log.WriteEnd("'{0}' GetGalleryApplication", ProviderSettings.ProviderName);
-				return result;
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("'{0}' GetGalleryApplication", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
+        {
+            try
+            {
+                Log.WriteStart("'{0}' GetGalleryApplication", ProviderSettings.ProviderName);
+                GalleryApplicationResult result = WebProvider.GetGalleryApplication(UserId, id);
+                Log.WriteEnd("'{0}' GetGalleryApplication", ProviderSettings.ProviderName);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format("'{0}' GetGalleryApplication", ProviderSettings.ProviderName),
+                    ex
+                );
+                throw;
+            }
+        }
 
         [WebMethod, SoapHeader("settings")]
         public GalleryWebAppStatus GetGalleryApplicationStatus(int UserId, string id)
-		{
-			try
-			{
-				Log.WriteStart("'{0}' GetGalleryApplicationStatus", ProviderSettings.ProviderName);
-                GalleryWebAppStatus result = WebProvider.GetGalleryApplicationStatus(UserId,id);
-				Log.WriteEnd("'{0}' GetGalleryApplicationStatus", ProviderSettings.ProviderName);
-				return result;
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("'{0}' GetGalleryApplicationStatus", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
+        {
+            try
+            {
+                Log.WriteStart("'{0}' GetGalleryApplicationStatus", ProviderSettings.ProviderName);
+                GalleryWebAppStatus result = WebProvider.GetGalleryApplicationStatus(UserId, id);
+                Log.WriteEnd("'{0}' GetGalleryApplicationStatus", ProviderSettings.ProviderName);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format(
+                        "'{0}' GetGalleryApplicationStatus",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
+                throw;
+            }
+        }
 
         [WebMethod, SoapHeader("settings")]
         public GalleryWebAppStatus DownloadGalleryApplication(int UserId, string id)
-		{
-			try
-			{
-				Log.WriteStart("'{0}' DownloadGalleryApplication", ProviderSettings.ProviderName);
-                GalleryWebAppStatus result = WebProvider.DownloadGalleryApplication(UserId,id);
-				Log.WriteEnd("'{0}' DownloadGalleryApplication", ProviderSettings.ProviderName);
-				return result;
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("'{0}' DownloadGalleryApplication", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
+        {
+            try
+            {
+                Log.WriteStart("'{0}' DownloadGalleryApplication", ProviderSettings.ProviderName);
+                GalleryWebAppStatus result = WebProvider.DownloadGalleryApplication(UserId, id);
+                Log.WriteEnd("'{0}' DownloadGalleryApplication", ProviderSettings.ProviderName);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format(
+                        "'{0}' DownloadGalleryApplication",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
+                throw;
+            }
+        }
 
         [WebMethod, SoapHeader("settings")]
         public DeploymentParametersResult GetGalleryApplicationParameters(int UserId, string id)
-		{
-			try
-			{
-				Log.WriteStart("'{0}' GetGalleryApplicationParameters", ProviderSettings.ProviderName);
-                DeploymentParametersResult result = WebProvider.GetGalleryApplicationParameters(UserId,id);
-				Log.WriteEnd("'{0}' GetGalleryApplicationParameters", ProviderSettings.ProviderName);
-				return result;
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("'{0}' GetGalleryApplicationParameters", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
+        {
+            try
+            {
+                Log.WriteStart(
+                    "'{0}' GetGalleryApplicationParameters",
+                    ProviderSettings.ProviderName
+                );
+                DeploymentParametersResult result = WebProvider.GetGalleryApplicationParameters(
+                    UserId,
+                    id
+                );
+                Log.WriteEnd(
+                    "'{0}' GetGalleryApplicationParameters",
+                    ProviderSettings.ProviderName
+                );
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format(
+                        "'{0}' GetGalleryApplicationParameters",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
+                throw;
+            }
+        }
 
         [WebMethod, SoapHeader("settings")]
-        public StringResultObject InstallGalleryApplication(int UserId, string id, List<DeploymentParameter> updatedValues, string languageId)
-		{
-			try
-			{
-				Log.WriteStart("'{0}' InstallGalleryApplication", ProviderSettings.ProviderName);
-                StringResultObject result = WebProvider.InstallGalleryApplication(UserId,id, updatedValues, languageId);
-				Log.WriteEnd("'{0}' InstallGalleryApplication", ProviderSettings.ProviderName);
-				return result;
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("'{0}' InstallGalleryApplication", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
-	
-		#endregion
+        public StringResultObject InstallGalleryApplication(
+            int UserId,
+            string id,
+            List<DeploymentParameter> updatedValues,
+            string languageId
+        )
+        {
+            try
+            {
+                Log.WriteStart("'{0}' InstallGalleryApplication", ProviderSettings.ProviderName);
+                StringResultObject result = WebProvider.InstallGalleryApplication(
+                    UserId,
+                    id,
+                    updatedValues,
+                    languageId
+                );
+                Log.WriteEnd("'{0}' InstallGalleryApplication", ProviderSettings.ProviderName);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format("'{0}' InstallGalleryApplication", ProviderSettings.ProviderName),
+                    ex
+                );
+                throw;
+            }
+        }
 
-		#region WebManagement Access
+        #endregion
 
-		[WebMethod, SoapHeader("settings")]
-		public bool CheckWebManagementAccountExists(string accountName)
-		{
-			try
-			{
-				bool accountExists;
-				//
-				Log.WriteStart("'{0}' CheckWebManagementAccountExtsts", ProviderSettings.ProviderName);
-				//
-				accountExists = WebProvider.CheckWebManagementAccountExists(accountName);
-				//
-				Log.WriteEnd("'{0}' CheckWebManagementAccountExtsts", ProviderSettings.ProviderName);
-				//
-				return accountExists;
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("'{0}' CheckWebManagementAccountExtsts", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
+        #region WebManagement Access
 
-		[WebMethod, SoapHeader("settings")]
-		public ResultObject CheckWebManagementPasswordComplexity(string accountPassword)
-		{
-			try
-			{
-				ResultObject result;
+        [WebMethod, SoapHeader("settings")]
+        public bool CheckWebManagementAccountExists(string accountName)
+        {
+            try
+            {
+                bool accountExists;
+                //
+                Log.WriteStart(
+                    "'{0}' CheckWebManagementAccountExtsts",
+                    ProviderSettings.ProviderName
+                );
+                //
+                accountExists = WebProvider.CheckWebManagementAccountExists(accountName);
+                //
+                Log.WriteEnd(
+                    "'{0}' CheckWebManagementAccountExtsts",
+                    ProviderSettings.ProviderName
+                );
+                //
+                return accountExists;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format(
+                        "'{0}' CheckWebManagementAccountExtsts",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
+                throw;
+            }
+        }
 
-				Log.WriteStart("'{0}' CheckWebManagementPasswordComplexity", ProviderSettings.ProviderName);
-				
-				result = WebProvider.CheckWebManagementPasswordComplexity(accountPassword);
-				
-				Log.WriteEnd("'{0}' CheckWebManagementPasswordComplexity", ProviderSettings.ProviderName);
-				//
-				return result;
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("'{0}' CheckWebManagementPasswordComplexity", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
+        [WebMethod, SoapHeader("settings")]
+        public ResultObject CheckWebManagementPasswordComplexity(string accountPassword)
+        {
+            try
+            {
+                ResultObject result;
 
-		[WebMethod, SoapHeader("settings")]
-		public void GrantWebManagementAccess(string siteId, string accountName, string accountPassword)
-		{
-			try
-			{
-				Log.WriteStart("'{0}' GrantWebManagementAccess", ProviderSettings.ProviderName);
-				WebProvider.GrantWebManagementAccess(siteId, accountName, accountPassword);
-				Log.WriteEnd("'{0}' GrantWebManagementAccess", ProviderSettings.ProviderName);
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("'{0}' GrantWebManagementAccess", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
+                Log.WriteStart(
+                    "'{0}' CheckWebManagementPasswordComplexity",
+                    ProviderSettings.ProviderName
+                );
 
-		[WebMethod, SoapHeader("settings")]
-		public void RevokeWebManagementAccess(string siteId, string accountName)
-		{
-			try
-			{
-				Log.WriteStart("'{0}' RevokeWebManagementAccess", ProviderSettings.ProviderName);
-				WebProvider.RevokeWebManagementAccess(siteId, accountName);
-				Log.WriteEnd("'{0}' RevokeWebManagementAccess", ProviderSettings.ProviderName);
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("'{0}' RevokeWebManagementAccess", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
+                result = WebProvider.CheckWebManagementPasswordComplexity(accountPassword);
 
-		[WebMethod, SoapHeader("settings")]
-		public void ChangeWebManagementAccessPassword(string accountName, string accountPassword)
-		{
-			try
-			{
-				Log.WriteStart("'{0}' ChangeWebManagementAccessPassword", ProviderSettings.ProviderName);
-				WebProvider.ChangeWebManagementAccessPassword(accountName, accountPassword);
-				Log.WriteEnd("'{0}' ChangeWebManagementAccessPassword", ProviderSettings.ProviderName);
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("'{0}' ChangeWebManagementAccessPassword", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
+                Log.WriteEnd(
+                    "'{0}' CheckWebManagementPasswordComplexity",
+                    ProviderSettings.ProviderName
+                );
+                //
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format(
+                        "'{0}' CheckWebManagementPasswordComplexity",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
+                throw;
+            }
+        }
+
+        [WebMethod, SoapHeader("settings")]
+        public void GrantWebManagementAccess(
+            string siteId,
+            string accountName,
+            string accountPassword
+        )
+        {
+            try
+            {
+                Log.WriteStart("'{0}' GrantWebManagementAccess", ProviderSettings.ProviderName);
+                WebProvider.GrantWebManagementAccess(siteId, accountName, accountPassword);
+                Log.WriteEnd("'{0}' GrantWebManagementAccess", ProviderSettings.ProviderName);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format("'{0}' GrantWebManagementAccess", ProviderSettings.ProviderName),
+                    ex
+                );
+                throw;
+            }
+        }
+
+        [WebMethod, SoapHeader("settings")]
+        public void RevokeWebManagementAccess(string siteId, string accountName)
+        {
+            try
+            {
+                Log.WriteStart("'{0}' RevokeWebManagementAccess", ProviderSettings.ProviderName);
+                WebProvider.RevokeWebManagementAccess(siteId, accountName);
+                Log.WriteEnd("'{0}' RevokeWebManagementAccess", ProviderSettings.ProviderName);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format("'{0}' RevokeWebManagementAccess", ProviderSettings.ProviderName),
+                    ex
+                );
+                throw;
+            }
+        }
+
+        [WebMethod, SoapHeader("settings")]
+        public void ChangeWebManagementAccessPassword(string accountName, string accountPassword)
+        {
+            try
+            {
+                Log.WriteStart(
+                    "'{0}' ChangeWebManagementAccessPassword",
+                    ProviderSettings.ProviderName
+                );
+                WebProvider.ChangeWebManagementAccessPassword(accountName, accountPassword);
+                Log.WriteEnd(
+                    "'{0}' ChangeWebManagementAccessPassword",
+                    ProviderSettings.ProviderName
+                );
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format(
+                        "'{0}' ChangeWebManagementAccessPassword",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
+                throw;
+            }
+        }
 
         #endregion
 
@@ -1650,14 +2003,17 @@ namespace SolidCP.Server
                 certificate = WebProvider.generateCSR(certificate);
                 Log.WriteEnd("'{0}' generateCSR", ProviderSettings.ProviderName);
                 return certificate;
-
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' generateCSR", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' generateCSR", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
+
         [WebMethod, SoapHeader("settings")]
         public SSLCertificate generateRenewalCSR(SSLCertificate certificate)
         {
@@ -1667,11 +2023,13 @@ namespace SolidCP.Server
                 certificate = WebProvider.generateCSR(certificate);
                 Log.WriteEnd("'{0}' generateCSR", ProviderSettings.ProviderName);
                 return certificate;
-
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' generateCSR", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' generateCSR", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -1691,11 +2049,13 @@ namespace SolidCP.Server
                 SSLCertificate result = WebProvider.installCertificate(certificate, website);
                 Log.WriteEnd("'{0}' installCertificate", ProviderSettings.ProviderName);
                 return result;
-
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' generateCSR", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' generateCSR", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -1709,11 +2069,13 @@ namespace SolidCP.Server
                 string result = WebProvider.LEinstallCertificate(website, email);
                 Log.WriteEnd("'{0}' LEinstallCertificate", ProviderSettings.ProviderName);
                 return result;
-
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' LEinstallCertificate", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' LEinstallCertificate", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -1728,7 +2090,10 @@ namespace SolidCP.Server
 
                 if (response.Hash == null)
                 {
-                    Log.WriteError(String.Format("'{0}' installPFX", ProviderSettings.ProviderName), null);
+                    Log.WriteError(
+                        String.Format("'{0}' installPFX", ProviderSettings.ProviderName),
+                        null
+                    );
                 }
                 else
                 {
@@ -1738,7 +2103,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' installPFX", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' installPFX", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -1748,21 +2116,25 @@ namespace SolidCP.Server
         {
             return WebProvider.exportCertificate(serialNumber, password);
         }
+
         [WebMethod, SoapHeader("settings")]
         public List<SSLCertificate> getServerCertificates()
         {
             return WebProvider.getServerCertificates();
         }
+
         [WebMethod, SoapHeader("settings")]
         public ResultObject DeleteCertificate(SSLCertificate certificate, WebSite website)
         {
             return WebProvider.DeleteCertificate(certificate, website);
         }
+
         [WebMethod, SoapHeader("settings")]
         public SSLCertificate ImportCertificate(WebSite website)
         {
             return WebProvider.ImportCertificate(website);
         }
+
         [WebMethod, SoapHeader("settings")]
         public bool CheckCertificate(WebSite webSite)
         {
@@ -1779,7 +2151,7 @@ namespace SolidCP.Server
         }
 
         [WebMethod, SoapHeader("settings")]
-        public  void SetDirectoryBrowseEnabled(string siteId, bool enabled)
+        public void SetDirectoryBrowseEnabled(string siteId, bool enabled)
         {
             WebProvider.SetDirectoryBrowseEnabled(siteId, enabled);
         }

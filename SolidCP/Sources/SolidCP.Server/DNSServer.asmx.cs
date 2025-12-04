@@ -1,6 +1,6 @@
 // Copyright (c) 2016, SolidCP
 // SolidCP is distributed under the Creative Commons Share-alike license
-// 
+//
 // SolidCP is a fork of WebsitePanel:
 // Copyright (c) 2015, Outercurve Foundation.
 // All rights reserved.
@@ -35,10 +35,10 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Web.Services;
 using System.Web.Services.Protocols;
+using Microsoft.Web.Services3;
 using SolidCP.Providers;
 using SolidCP.Providers.DNS;
 using SolidCP.Server.Utils;
-using Microsoft.Web.Services3;
 
 namespace SolidCP.Server
 {
@@ -58,7 +58,8 @@ namespace SolidCP.Server
 
         private string GetAsciiZoneName(string zoneName)
         {
-            if (string.IsNullOrEmpty(zoneName)) return zoneName;
+            if (string.IsNullOrEmpty(zoneName))
+                return zoneName;
             var idn = new IdnMapping();
             return idn.GetAscii(zoneName);
         }
@@ -76,7 +77,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ZoneExists", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ZoneExists", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -109,7 +113,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' AddPrimaryZone", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' AddPrimaryZone", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -125,7 +132,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' AddSecondaryZone", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' AddSecondaryZone", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -141,23 +151,39 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteZone", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteZone", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
 
         [WebMethod, SoapHeader("settings")]
-        public void UpdateSoaRecord(string zoneName, string host, string primaryNsServer, string primaryPerson)
+        public void UpdateSoaRecord(
+            string zoneName,
+            string host,
+            string primaryNsServer,
+            string primaryPerson
+        )
         {
             try
             {
                 Log.WriteStart("'{0}' UpdateSoaRecord", ProviderSettings.ProviderName);
-                DnsProvider.UpdateSoaRecord(GetAsciiZoneName(zoneName), host, primaryNsServer, primaryPerson);
+                DnsProvider.UpdateSoaRecord(
+                    GetAsciiZoneName(zoneName),
+                    host,
+                    primaryNsServer,
+                    primaryPerson
+                );
                 Log.WriteEnd("'{0}' UpdateSoaRecord", ProviderSettings.ProviderName);
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UpdateSoaRecord", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UpdateSoaRecord", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -176,7 +202,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetZoneRecords", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetZoneRecords", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -192,7 +221,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' AddZoneRecord", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' AddZoneRecord", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -208,7 +240,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteZoneRecord", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteZoneRecord", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -224,7 +259,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' AddZoneRecords", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' AddZoneRecords", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -240,7 +278,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteZoneRecords", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteZoneRecords", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }

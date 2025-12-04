@@ -1,6 +1,6 @@
 // Copyright (c) 2016, SolidCP
 // SolidCP is distributed under the Creative Commons Share-alike license
-// 
+//
 // SolidCP is a fork of WebsitePanel:
 // Copyright (c) 2015, Outercurve Foundation.
 // All rights reserved.
@@ -31,12 +31,11 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using System;
-using System.Configuration;
-using System.Diagnostics;
 using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Xml;
-
 using Microsoft.Web.Services3;
 using Microsoft.Web.Services3.Design;
 using Microsoft.Web.Services3.Security;
@@ -49,18 +48,14 @@ namespace SolidCP.Server
         /// <summary>
         /// Constructs an instance of this security token manager.
         /// </summary>
-        public ServerUsernameTokenManager()
-        {
-        }
+        public ServerUsernameTokenManager() { }
 
         /// <summary>
         /// Constructs an instance of this security token manager.
         /// </summary>
         /// <param name="nodes">An XmlNodeList containing XML elements from a configuration file.</param>
         public ServerUsernameTokenManager(XmlNodeList nodes)
-            : base(nodes)
-        {
-        }
+            : base(nodes) { }
 
         /// <summary>
         /// Returns the password or password equivalent for the username provided.

@@ -1,6 +1,6 @@
 // Copyright (c) 2016, SolidCP
 // SolidCP is distributed under the Creative Commons Share-alike license
-// 
+//
 // SolidCP is a fork of WebsitePanel:
 // Copyright (c) 2015, Outercurve Foundation.
 // All rights reserved.
@@ -34,11 +34,11 @@ using System;
 using System.ComponentModel;
 using System.Web.Services;
 using System.Web.Services.Protocols;
+using Microsoft.Web.Services3;
 using SolidCP.Providers;
 using SolidCP.Providers.HostedSolution;
 using SolidCP.Providers.SharePoint;
 using SolidCP.Server.Utils;
-using Microsoft.Web.Services3;
 
 namespace SolidCP.Server
 {
@@ -68,12 +68,14 @@ namespace SolidCP.Server
         [WebMethod, SoapHeader("settings")]
         public int[] GetSupportedLanguages()
         {
-            return ExecuteAction<int[]>(delegate
-            {
-                return HostedSharePointServerProvider.GetSupportedLanguages();
-            }, "GetSupportedLanguages");
+            return ExecuteAction<int[]>(
+                delegate
+                {
+                    return HostedSharePointServerProvider.GetSupportedLanguages();
+                },
+                "GetSupportedLanguages"
+            );
         }
-
 
         /// <summary>
         /// Gets list of SharePoint collections within root web application.
@@ -82,10 +84,13 @@ namespace SolidCP.Server
         [WebMethod, SoapHeader("settings")]
         public SharePointSiteCollection[] GetSiteCollections()
         {
-            return ExecuteAction<SharePointSiteCollection[]>(delegate
-            {
-                return HostedSharePointServerProvider.GetSiteCollections();
-            }, "GetSiteCollections");
+            return ExecuteAction<SharePointSiteCollection[]>(
+                delegate
+                {
+                    return HostedSharePointServerProvider.GetSiteCollections();
+                },
+                "GetSiteCollections"
+            );
         }
 
         /// <summary>
@@ -96,10 +101,13 @@ namespace SolidCP.Server
         [WebMethod, SoapHeader("settings")]
         public SharePointSiteCollection GetSiteCollection(string url)
         {
-            return ExecuteAction<SharePointSiteCollection>(delegate
-            {
-                return HostedSharePointServerProvider.GetSiteCollection(url);
-            }, "GetSiteCollection");
+            return ExecuteAction<SharePointSiteCollection>(
+                delegate
+                {
+                    return HostedSharePointServerProvider.GetSiteCollection(url);
+                },
+                "GetSiteCollection"
+            );
         }
 
         /// <summary>
@@ -110,38 +118,43 @@ namespace SolidCP.Server
         public void CreateSiteCollection(SharePointSiteCollection siteCollection)
         {
             siteCollection.OwnerLogin = AttachNetbiosDomainName(siteCollection.OwnerLogin);
-            ExecuteAction<object>(delegate
-            {
-                HostedSharePointServerProvider.CreateSiteCollection(siteCollection);
-                return new object();
-            }, "CreateSiteCollection");
+            ExecuteAction<object>(
+                delegate
+                {
+                    HostedSharePointServerProvider.CreateSiteCollection(siteCollection);
+                    return new object();
+                },
+                "CreateSiteCollection"
+            );
         }
-
 
         [WebMethod, SoapHeader("settings")]
         public void UpdateQuotas(string url, long maxSize, long warningSize)
         {
-            ExecuteAction<object>(delegate
-            {
-                HostedSharePointServerProvider.UpdateQuotas(url, maxSize, warningSize);
-                return new object();
-            }, "UpdateQuotas");
-
-
-
+            ExecuteAction<object>(
+                delegate
+                {
+                    HostedSharePointServerProvider.UpdateQuotas(url, maxSize, warningSize);
+                    return new object();
+                },
+                "UpdateQuotas"
+            );
         }
 
         [WebMethod, SoapHeader("settings")]
         public SharePointSiteDiskSpace[] CalculateSiteCollectionsDiskSpace(string[] urls)
         {
             SharePointSiteDiskSpace[] ret = null;
-            ret = ExecuteAction<SharePointSiteDiskSpace[]>(delegate
-            {
-                return HostedSharePointServerProvider.CalculateSiteCollectionsDiskSpace(urls);
-            }, "CalculateSiteCollectionDiskSpace");
+            ret = ExecuteAction<SharePointSiteDiskSpace[]>(
+                delegate
+                {
+                    return HostedSharePointServerProvider.CalculateSiteCollectionsDiskSpace(urls);
+                },
+                "CalculateSiteCollectionDiskSpace"
+            );
             return ret;
-
         }
+
         /// <summary>
         /// Deletes site collection under given url.
         /// </summary>
@@ -149,12 +162,16 @@ namespace SolidCP.Server
         [WebMethod, SoapHeader("settings")]
         public void DeleteSiteCollection(SharePointSiteCollection siteCollection)
         {
-            ExecuteAction<object>(delegate
-            {
-                HostedSharePointServerProvider.DeleteSiteCollection(siteCollection);
-                return new object();
-            }, "DeleteSiteCollection");
+            ExecuteAction<object>(
+                delegate
+                {
+                    HostedSharePointServerProvider.DeleteSiteCollection(siteCollection);
+                    return new object();
+                },
+                "DeleteSiteCollection"
+            );
         }
+
         /// <summary>
         /// Backups site collection under give url.
         /// </summary>
@@ -165,11 +182,13 @@ namespace SolidCP.Server
         [WebMethod, SoapHeader("settings")]
         public string BackupSiteCollection(string url, string filename, bool zip)
         {
-            return ExecuteAction<string>(delegate
-            {
-                return
-                    HostedSharePointServerProvider.BackupSiteCollection(url, filename, zip);
-            }, "BackupSiteCollection");
+            return ExecuteAction<string>(
+                delegate
+                {
+                    return HostedSharePointServerProvider.BackupSiteCollection(url, filename, zip);
+                },
+                "BackupSiteCollection"
+            );
         }
 
         /// <summary>
@@ -181,11 +200,14 @@ namespace SolidCP.Server
         public void RestoreSiteCollection(SharePointSiteCollection siteCollection, string filename)
         {
             siteCollection.OwnerLogin = AttachNetbiosDomainName(siteCollection.OwnerLogin);
-            ExecuteAction<object>(delegate
-            {
-                HostedSharePointServerProvider.RestoreSiteCollection(siteCollection, filename);
-                return new object();
-            }, "RestoreSiteCollection");
+            ExecuteAction<object>(
+                delegate
+                {
+                    HostedSharePointServerProvider.RestoreSiteCollection(siteCollection, filename);
+                    return new object();
+                },
+                "RestoreSiteCollection"
+            );
         }
 
         /// <summary>
@@ -198,11 +220,17 @@ namespace SolidCP.Server
         [WebMethod, SoapHeader("settings")]
         public byte[] GetTempFileBinaryChunk(string path, int offset, int length)
         {
-            return ExecuteAction<byte[]>(delegate
-            {
-                return
-                    HostedSharePointServerProvider.GetTempFileBinaryChunk(path, offset, length);
-            }, "GetTempFileBinaryChunk");
+            return ExecuteAction<byte[]>(
+                delegate
+                {
+                    return HostedSharePointServerProvider.GetTempFileBinaryChunk(
+                        path,
+                        offset,
+                        length
+                    );
+                },
+                "GetTempFileBinaryChunk"
+            );
         }
 
         /// <summary>
@@ -215,31 +243,36 @@ namespace SolidCP.Server
         [WebMethod, SoapHeader("settings")]
         public virtual string AppendTempFileBinaryChunk(string fileName, string path, byte[] chunk)
         {
-            return ExecuteAction<string>(delegate
-            {
-                return
-                    HostedSharePointServerProvider.AppendTempFileBinaryChunk(fileName, path, chunk);
-            }, "AppendTempFileBinaryChunk");
+            return ExecuteAction<string>(
+                delegate
+                {
+                    return HostedSharePointServerProvider.AppendTempFileBinaryChunk(
+                        fileName,
+                        path,
+                        chunk
+                    );
+                },
+                "AppendTempFileBinaryChunk"
+            );
         }
-
 
         [WebMethod, SoapHeader("settings")]
         public long GetSiteCollectionSize(string url)
         {
-            return ExecuteAction<long>(delegate
-            {
-                return
-                    HostedSharePointServerProvider.GetSiteCollectionSize(url);
-            }, "GetSiteCollectionSize");
+            return ExecuteAction<long>(
+                delegate
+                {
+                    return HostedSharePointServerProvider.GetSiteCollectionSize(url);
+                },
+                "GetSiteCollectionSize"
+            );
         }
-
 
         [WebMethod, SoapHeader("settings")]
         public void SetPeoplePickerOu(string site, string ou)
         {
             HostedSharePointServerProvider.SetPeoplePickerOu(site, ou);
         }
-
 
         /// <summary>
         /// Executes supplied action and performs logging.
@@ -259,7 +292,14 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("Can't {1} '{0}' provider", ProviderSettings.ProviderName, actionName), ex);
+                Log.WriteError(
+                    String.Format(
+                        "Can't {1} '{0}' provider",
+                        ProviderSettings.ProviderName,
+                        actionName
+                    ),
+                    ex
+                );
                 throw;
             }
         }
@@ -271,8 +311,15 @@ namespace SolidCP.Server
         /// <returns>Fully qualified netbios account name.</returns>
         private string AttachNetbiosDomainName(string accountName)
         {
-            string domainNetbiosName = String.Format("{0}\\", ActiveDirectoryUtils.GetNETBIOSDomainName(ServerSettings.ADRootDomain));
-            return String.Format("{0}{1}", domainNetbiosName, accountName.Replace(domainNetbiosName, String.Empty));
+            string domainNetbiosName = String.Format(
+                "{0}\\",
+                ActiveDirectoryUtils.GetNETBIOSDomainName(ServerSettings.ADRootDomain)
+            );
+            return String.Format(
+                "{0}{1}",
+                domainNetbiosName,
+                accountName.Replace(domainNetbiosName, String.Empty)
+            );
         }
     }
 }

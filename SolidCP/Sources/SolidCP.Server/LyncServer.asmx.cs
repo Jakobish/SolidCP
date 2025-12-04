@@ -1,6 +1,6 @@
 // Copyright (c) 2016, SolidCP
 // SolidCP is distributed under the Creative Commons Share-alike license
-// 
+//
 // SolidCP is a fork of WebsitePanel:
 // Copyright (c) 2015, Outercurve Foundation.
 // All rights reserved.
@@ -34,10 +34,10 @@ using System;
 using System.ComponentModel;
 using System.Web.Services;
 using System.Web.Services.Protocols;
+using Microsoft.Web.Services3;
 using SolidCP.Providers;
 using SolidCP.Providers.HostedSolution;
 using SolidCP.Server.Utils;
-using Microsoft.Web.Services3;
 
 namespace SolidCP.Server
 {
@@ -55,21 +55,39 @@ namespace SolidCP.Server
             get { return (ILyncServer)Provider; }
         }
 
-
         #region Organization
         [WebMethod, SoapHeader("settings")]
-        public string CreateOrganization(string organizationId, string sipDomain, bool enableConferencing, bool enableConferencingVideo, int maxConferenceSize, bool enabledFederation, bool enabledEnterpriseVoice)
+        public string CreateOrganization(
+            string organizationId,
+            string sipDomain,
+            bool enableConferencing,
+            bool enableConferencingVideo,
+            int maxConferenceSize,
+            bool enabledFederation,
+            bool enabledEnterpriseVoice
+        )
         {
             try
             {
                 Log.WriteStart("{0}.CreateOrganization", ProviderSettings.ProviderName);
-                string ret = Lync.CreateOrganization(organizationId, sipDomain, enableConferencing, enableConferencingVideo, maxConferenceSize, enabledFederation, enabledEnterpriseVoice);
+                string ret = Lync.CreateOrganization(
+                    organizationId,
+                    sipDomain,
+                    enableConferencing,
+                    enableConferencingVideo,
+                    maxConferenceSize,
+                    enabledFederation,
+                    enabledEnterpriseVoice
+                );
                 Log.WriteEnd("{0}.CreateOrganization", ProviderSettings.ProviderName);
                 return ret;
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("Error: {0}.CreateOrganization", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("Error: {0}.CreateOrganization", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -86,7 +104,13 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("Error: {0}.GetOrganizationTenantId", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format(
+                        "Error: {0}.GetOrganizationTenantId",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
                 throw;
             }
         }
@@ -103,7 +127,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("Error: {0}.DeleteOrganization", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("Error: {0}.DeleteOrganization", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -123,7 +150,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("Error: {0}.CreateUser", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("Error: {0}.CreateUser", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -140,13 +170,23 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("Error: {0}.GetLyncUserGeneralSettings", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format(
+                        "Error: {0}.GetLyncUserGeneralSettings",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
                 throw;
             }
         }
 
         [WebMethod, SoapHeader("settings")]
-        public bool SetLyncUserGeneralSettings(string organizationId, string userUpn, LyncUser lyncUser)
+        public bool SetLyncUserGeneralSettings(
+            string organizationId,
+            string userUpn,
+            LyncUser lyncUser
+        )
         {
             try
             {
@@ -157,11 +197,16 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("Error: {0}.SetLyncUserGeneralSettings", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format(
+                        "Error: {0}.SetLyncUserGeneralSettings",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
                 throw;
             }
         }
-
 
         [WebMethod, SoapHeader("settings")]
         public bool SetLyncUserPlan(string organizationId, string userUpn, LyncUserPlan plan)
@@ -175,7 +220,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("Error: {0}.SetLyncUserPlan", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("Error: {0}.SetLyncUserPlan", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -192,7 +240,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("Error: {0}.DeleteUser", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("Error: {0}.DeleteUser", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -212,7 +263,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("Error: {0}.GetFederationDomains", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("Error: {0}.GetFederationDomains", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -229,7 +283,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("Error: {0}.AddFederationDomain", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("Error: {0}.AddFederationDomain", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -246,7 +303,13 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("Error: {0}.RemoveFederationDomain", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format(
+                        "Error: {0}.RemoveFederationDomain",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
                 throw;
             }
         }
@@ -263,7 +326,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("Error: {0}.ReloadConfiguration", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("Error: {0}.ReloadConfiguration", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -281,13 +347,14 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("Error: {0}.GetPolicyList", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("Error: {0}.GetPolicyList", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
 
             return ret;
         }
-
-
     }
 }
