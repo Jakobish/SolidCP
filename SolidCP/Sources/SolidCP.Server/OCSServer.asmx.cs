@@ -1,6 +1,6 @@
 // Copyright (c) 2016, SolidCP
 // SolidCP is distributed under the Creative Commons Share-alike license
-// 
+//
 // SolidCP is a fork of WebsitePanel:
 // Copyright (c) 2015, Outercurve Foundation.
 // All rights reserved.
@@ -34,117 +34,146 @@ using System;
 using System.ComponentModel;
 using System.Web.Services;
 using System.Web.Services.Protocols;
+using Microsoft.Web.Services3;
 using SolidCP.Providers;
 using SolidCP.Providers.HostedSolution;
 using SolidCP.Server.Utils;
-using Microsoft.Web.Services3;
 
 namespace SolidCP.Server
 {
-	/// <summary>
-	/// OCS Web Service
-	/// </summary>
-	[WebService(Namespace = "http://smbsaas/solidcp/server/")]
-	[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-	[Policy("ServerPolicy")]
-	[ToolboxItem(false)]
-	public class OCSServer : HostingServiceProviderWebService
-	{
-		private IOCSServer OCS
-		{
-			get { return (IOCSServer)Provider; }
-		}
+    /// <summary>
+    /// OCS Web Service
+    /// </summary>
+    [WebService(Namespace = "http://smbsaas/solidcp/server/")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [Policy("ServerPolicy")]
+    [ToolboxItem(false)]
+    public class OCSServer : HostingServiceProviderWebService
+    {
+        private IOCSServer OCS
+        {
+            get { return (IOCSServer)Provider; }
+        }
 
+        #region Users
 
+        [WebMethod, SoapHeader("settings")]
+        public string CreateUser(string userUpn, string userDistinguishedName)
+        {
+            try
+            {
+                Log.WriteStart("{0}.CreateUser", ProviderSettings.ProviderName);
+                string ret = OCS.CreateUser(userUpn, userDistinguishedName);
+                Log.WriteEnd("{0}.CreateUser", ProviderSettings.ProviderName);
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format("Error: {0}.CreateUser", ProviderSettings.ProviderName),
+                    ex
+                );
+                throw;
+            }
+        }
 
-		#region Users
+        [WebMethod, SoapHeader("settings")]
+        public OCSUser GetUserGeneralSettings(string instanceId)
+        {
+            try
+            {
+                Log.WriteStart("{0}.GetUserGeneralSettings", ProviderSettings.ProviderName);
+                OCSUser ret = OCS.GetUserGeneralSettings(instanceId);
+                Log.WriteEnd("{0}.GetUserGeneralSettings", ProviderSettings.ProviderName);
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format(
+                        "Error: {0}.GetUserGeneralSettings",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
+                throw;
+            }
+        }
 
-		[WebMethod, SoapHeader("settings")]
-		public string CreateUser(string userUpn, string userDistinguishedName)
-		{
-			try
-			{
-				Log.WriteStart("{0}.CreateUser", ProviderSettings.ProviderName);
-				string ret = OCS.CreateUser(userUpn, userDistinguishedName);
-				Log.WriteEnd("{0}.CreateUser", ProviderSettings.ProviderName);
-				return ret;
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("Error: {0}.CreateUser", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
+        [WebMethod, SoapHeader("settings")]
+        public void SetUserGeneralSettings(
+            string instanceId,
+            bool enabledForFederation,
+            bool enabledForPublicIMConectivity,
+            bool archiveInternalCommunications,
+            bool archiveFederatedCommunications,
+            bool enabledForEnhancedPresence
+        )
+        {
+            try
+            {
+                Log.WriteStart("{0}.SetUserGeneralSettings", ProviderSettings.ProviderName);
+                OCS.SetUserGeneralSettings(
+                    instanceId,
+                    enabledForFederation,
+                    enabledForPublicIMConectivity,
+                    archiveInternalCommunications,
+                    archiveFederatedCommunications,
+                    enabledForEnhancedPresence
+                );
+                Log.WriteEnd("{0}.SetUserGeneralSettings", ProviderSettings.ProviderName);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format(
+                        "Error: {0}.SetUserGeneralSettings",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
+                throw;
+            }
+        }
 
-		[WebMethod, SoapHeader("settings")]
-		public OCSUser GetUserGeneralSettings(string instanceId)
-		{
-			try
-			{
-				Log.WriteStart("{0}.GetUserGeneralSettings", ProviderSettings.ProviderName);
-				OCSUser ret = OCS.GetUserGeneralSettings(instanceId);
-				Log.WriteEnd("{0}.GetUserGeneralSettings", ProviderSettings.ProviderName);
-				return ret;
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("Error: {0}.GetUserGeneralSettings", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
+        [WebMethod, SoapHeader("settings")]
+        public void DeleteUser(string instanceId)
+        {
+            try
+            {
+                Log.WriteStart("{0}.DeleteUser", ProviderSettings.ProviderName);
+                OCS.DeleteUser(instanceId);
+                Log.WriteEnd("{0}.DeleteUser", ProviderSettings.ProviderName);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format("Error: {0}.DeleteUser", ProviderSettings.ProviderName),
+                    ex
+                );
+                throw;
+            }
+        }
 
-		[WebMethod, SoapHeader("settings")]
-		public void SetUserGeneralSettings(string instanceId, bool enabledForFederation, bool enabledForPublicIMConectivity, bool archiveInternalCommunications, bool archiveFederatedCommunications, bool enabledForEnhancedPresence)
-		{
-			try
-			{
-				Log.WriteStart("{0}.SetUserGeneralSettings", ProviderSettings.ProviderName);
-				OCS.SetUserGeneralSettings(instanceId, enabledForFederation, enabledForPublicIMConectivity, archiveInternalCommunications, archiveFederatedCommunications, enabledForEnhancedPresence);
-				Log.WriteEnd("{0}.SetUserGeneralSettings", ProviderSettings.ProviderName);
+        [WebMethod, SoapHeader("settings")]
+        public void SetUserPrimaryUri(string instanceId, string userUpn)
+        {
+            try
+            {
+                Log.WriteStart("{0}.SetUserPrimaryUri", ProviderSettings.ProviderName);
+                OCS.SetUserPrimaryUri(instanceId, userUpn);
+                Log.WriteEnd("{0}.SetUserPrimaryUri", ProviderSettings.ProviderName);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteError(
+                    String.Format("Error: {0}.SetUserPrimaryUri", ProviderSettings.ProviderName),
+                    ex
+                );
+                throw;
+            }
+        }
 
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("Error: {0}.SetUserGeneralSettings", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
-
-		[WebMethod, SoapHeader("settings")]
-		public void DeleteUser(string instanceId)
-		{
-			try
-			{
-				Log.WriteStart("{0}.DeleteUser", ProviderSettings.ProviderName);
-				OCS.DeleteUser(instanceId);
-				Log.WriteEnd("{0}.DeleteUser", ProviderSettings.ProviderName);
-
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("Error: {0}.DeleteUser", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
-
-		[WebMethod, SoapHeader("settings")]
-		public void SetUserPrimaryUri(string instanceId, string userUpn)
-		{
-			try
-			{
-				Log.WriteStart("{0}.SetUserPrimaryUri", ProviderSettings.ProviderName);
-				OCS.SetUserPrimaryUri(instanceId, userUpn);
-				Log.WriteEnd("{0}.SetUserPrimaryUri", ProviderSettings.ProviderName);
-
-			}
-			catch (Exception ex)
-			{
-				Log.WriteError(String.Format("Error: {0}.SetUserPrimaryUri", ProviderSettings.ProviderName), ex);
-				throw;
-			}
-		}
-
-		#endregion
-
-	}
+        #endregion
+    }
 }

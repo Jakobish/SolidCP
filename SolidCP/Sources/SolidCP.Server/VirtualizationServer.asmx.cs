@@ -1,6 +1,6 @@
 // Copyright (c) 2016, SolidCP
 // SolidCP is distributed under the Creative Commons Share-alike license
-// 
+//
 // SolidCP is a fork of WebsitePanel:
 // Copyright (c) 2015, Outercurve Foundation.
 // All rights reserved.
@@ -30,19 +30,18 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE)  ARISING  IN  ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-﻿using System;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Web;
-using System.Collections;
 using System.Web.Services;
 using System.Web.Services.Protocols;
-using System.ComponentModel;
 using Microsoft.Web.Services3;
-
 using SolidCP.Providers;
 using SolidCP.Providers.Virtualization;
 using SolidCP.Server.Utils;
-using System.Collections.Generic;
 
 namespace SolidCP.Server
 {
@@ -74,7 +73,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetVirtualMachine", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetVirtualMachine", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -91,7 +93,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetVirtualMachineEx", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetVirtualMachineEx", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -108,7 +113,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetVirtualMachines", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetVirtualMachines", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -118,14 +126,26 @@ namespace SolidCP.Server
         {
             try
             {
-                Log.WriteStart("'{0}' GetVirtualMachineThumbnailImage", ProviderSettings.ProviderName);
+                Log.WriteStart(
+                    "'{0}' GetVirtualMachineThumbnailImage",
+                    ProviderSettings.ProviderName
+                );
                 byte[] result = VirtualizationProvider.GetVirtualMachineThumbnailImage(vmId, size);
-                Log.WriteEnd("'{0}' GetVirtualMachineThumbnailImage", ProviderSettings.ProviderName);
+                Log.WriteEnd(
+                    "'{0}' GetVirtualMachineThumbnailImage",
+                    ProviderSettings.ProviderName
+                );
                 return result;
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetVirtualMachineThumbnailImage", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format(
+                        "'{0}' GetVirtualMachineThumbnailImage",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
                 throw;
             }
         }
@@ -142,7 +162,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' CreateVirtualMachine", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' CreateVirtualMachine", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -159,13 +182,19 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UpdateVirtualMachine", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UpdateVirtualMachine", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
 
         [WebMethod, SoapHeader("settings")]
-        public JobResult ChangeVirtualMachineState(string vmId, VirtualMachineRequestedState newState)
+        public JobResult ChangeVirtualMachineState(
+            string vmId,
+            VirtualMachineRequestedState newState
+        )
         {
             try
             {
@@ -176,7 +205,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ChangeVirtualMachineState", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ChangeVirtualMachineState", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -187,13 +219,20 @@ namespace SolidCP.Server
             try
             {
                 Log.WriteStart("'{0}' ShutDownVirtualMachine", ProviderSettings.ProviderName);
-                ReturnCode result = VirtualizationProvider.ShutDownVirtualMachine(vmId, force, reason);
+                ReturnCode result = VirtualizationProvider.ShutDownVirtualMachine(
+                    vmId,
+                    force,
+                    reason
+                );
                 Log.WriteEnd("'{0}' ShutDownVirtualMachine", ProviderSettings.ProviderName);
                 return result;
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ShutDownVirtualMachine", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ShutDownVirtualMachine", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -210,7 +249,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetVirtualMachineJobs", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetVirtualMachineJobs", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -227,7 +269,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' RenameVirtualMachine", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' RenameVirtualMachine", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -244,7 +289,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteVirtualMachine", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteVirtualMachine", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -261,7 +309,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ExportVirtualMachine", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ExportVirtualMachine", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -274,13 +325,20 @@ namespace SolidCP.Server
             try
             {
                 Log.WriteStart("'{0}' GetVirtualMachineSnapshots", ProviderSettings.ProviderName);
-                List<VirtualMachineSnapshot> result = VirtualizationProvider.GetVirtualMachineSnapshots(vmId);
+                List<VirtualMachineSnapshot> result =
+                    VirtualizationProvider.GetVirtualMachineSnapshots(vmId);
                 Log.WriteEnd("'{0}' GetVirtualMachineSnapshots", ProviderSettings.ProviderName);
                 return result;
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetVirtualMachineSnapshots", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format(
+                        "'{0}' GetVirtualMachineSnapshots",
+                        ProviderSettings.ProviderName
+                    ),
+                    ex
+                );
                 throw;
             }
         }
@@ -297,7 +355,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetSnapshot", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetSnapshot", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -314,7 +375,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' CreateSnapshot", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' CreateSnapshot", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -331,7 +395,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' RenameSnapshot", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' RenameSnapshot", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -348,7 +415,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ApplySnapshot", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ApplySnapshot", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -365,7 +435,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteSnapshot", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteSnapshot", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -382,7 +455,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteSnapshotSubtree", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteSnapshotSubtree", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -399,7 +475,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetSnapshotThumbnailImage", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetSnapshotThumbnailImage", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -412,13 +491,18 @@ namespace SolidCP.Server
             try
             {
                 Log.WriteStart("'{0}' GetExternalSwitches", ProviderSettings.ProviderName);
-                List<VirtualSwitch> result = VirtualizationProvider.GetExternalSwitches(computerName);
+                List<VirtualSwitch> result = VirtualizationProvider.GetExternalSwitches(
+                    computerName
+                );
                 Log.WriteEnd("'{0}' GetExternalSwitches", ProviderSettings.ProviderName);
                 return result;
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetExternalSwitches", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetExternalSwitches", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -435,7 +519,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetSwitches", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetSwitches", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -452,7 +539,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' SwitchExists", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' SwitchExists", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -469,7 +559,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' CreateSwitch", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' CreateSwitch", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -486,7 +579,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteSwitch", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteSwitch", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -505,7 +601,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetInsertedDVD", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetInsertedDVD", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -558,7 +657,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetLibraryItems", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetLibraryItems", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -577,7 +679,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetKVPItems", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetKVPItems", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -594,7 +699,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetStandardKVPItems", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetStandardKVPItems", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -611,7 +719,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' AddKVPItems", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' AddKVPItems", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -628,7 +739,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' RemoveKVPItems", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' RemoveKVPItems", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -645,7 +759,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ModifyKVPItems", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ModifyKVPItems", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -664,7 +781,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetVirtualHardDiskInfo", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetVirtualHardDiskInfo", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -681,7 +801,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' MountVirtualHardDisk", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' MountVirtualHardDisk", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -698,7 +821,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' UnmountVirtualHardDisk", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' UnmountVirtualHardDisk", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -715,24 +841,38 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ExpandVirtualHardDisk", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ExpandVirtualHardDisk", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
 
         [WebMethod, SoapHeader("settings")]
-        public JobResult ConvertVirtualHardDisk(string sourcePath, string destinationPath, VirtualHardDiskType diskType)
+        public JobResult ConvertVirtualHardDisk(
+            string sourcePath,
+            string destinationPath,
+            VirtualHardDiskType diskType
+        )
         {
             try
             {
                 Log.WriteStart("'{0}' ConvertVirtualHardDisk", ProviderSettings.ProviderName);
-                JobResult result = VirtualizationProvider.ConvertVirtualHardDisk(sourcePath, destinationPath, diskType);
+                JobResult result = VirtualizationProvider.ConvertVirtualHardDisk(
+                    sourcePath,
+                    destinationPath,
+                    diskType
+                );
                 Log.WriteEnd("'{0}' ConvertVirtualHardDisk", ProviderSettings.ProviderName);
                 return result;
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ConvertVirtualHardDisk", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ConvertVirtualHardDisk", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -748,7 +888,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' DeleteRemoteFile", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' DeleteRemoteFile", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -764,7 +907,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ExpandDiskVolume", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ExpandDiskVolume", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -781,7 +927,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ReadRemoteFile", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ReadRemoteFile", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -797,7 +946,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' WriteRemoteFile", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' WriteRemoteFile", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -833,24 +985,36 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetAllJobs", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetAllJobs", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
 
         [WebMethod, SoapHeader("settings")]
-        public ChangeJobStateReturnCode ChangeJobState(string jobId, ConcreteJobRequestedState newState)
+        public ChangeJobStateReturnCode ChangeJobState(
+            string jobId,
+            ConcreteJobRequestedState newState
+        )
         {
             try
             {
                 Log.WriteStart("'{0}' ChangeJobState", ProviderSettings.ProviderName);
-                ChangeJobStateReturnCode result = VirtualizationProvider.ChangeJobState(jobId, newState);
+                ChangeJobStateReturnCode result = VirtualizationProvider.ChangeJobState(
+                    jobId,
+                    newState
+                );
                 Log.WriteEnd("'{0}' ChangeJobState", ProviderSettings.ProviderName);
                 return result;
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' ChangeJobState", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' ChangeJobState", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }
@@ -869,7 +1033,10 @@ namespace SolidCP.Server
             }
             catch (Exception ex)
             {
-                Log.WriteError(String.Format("'{0}' GetProcessorCoresNumber", ProviderSettings.ProviderName), ex);
+                Log.WriteError(
+                    String.Format("'{0}' GetProcessorCoresNumber", ProviderSettings.ProviderName),
+                    ex
+                );
                 throw;
             }
         }

@@ -1,10 +1,10 @@
-﻿using SolidCP.Server.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
+using SolidCP.Server.Utils;
 
 namespace SolidCP.Providers.Web
 {
@@ -12,13 +12,9 @@ namespace SolidCP.Providers.Web
     {
         private static InitialSessionState session;
 
-        static RunspaceHelper()
-        {
-        }
+        static RunspaceHelper() { }
 
-        public RunspaceHelper()
-        {
-        }
+        public RunspaceHelper() { }
 
         public bool CheckWindowsFeatureInstallation(string featureName)
         {
@@ -29,7 +25,8 @@ namespace SolidCP.Providers.Web
                 runspace = this.OpenRunspace(new string[0]);
                 Command command = new Command("Get-WindowsFeature");
                 command.Parameters.Add("Name", featureName);
-                PSObject pSObject = this.ExecuteShellCommand(runspace, command, false).FirstOrDefault<PSObject>();
+                PSObject pSObject = this.ExecuteShellCommand(runspace, command, false)
+                    .FirstOrDefault<PSObject>();
                 if (pSObject != null)
                 {
                     pSObjectProperty = (bool)this.GetPSObjectProperty(pSObject, "Installed");
@@ -57,12 +54,23 @@ namespace SolidCP.Providers.Web
             }
         }
 
-        public Collection<PSObject> ExecuteLocalScript(Runspace runSpace, List<string> scripts, out object[] errors, params string[] moduleImports)
+        public Collection<PSObject> ExecuteLocalScript(
+            Runspace runSpace,
+            List<string> scripts,
+            out object[] errors,
+            params string[] moduleImports
+        )
         {
             return this.ExecuteRemoteScript(runSpace, null, scripts, out errors, moduleImports);
         }
 
-        public Collection<PSObject> ExecuteRemoteScript(Runspace runSpace, string hostName, List<string> scripts, out object[] errors, params string[] moduleImports)
+        public Collection<PSObject> ExecuteRemoteScript(
+            Runspace runSpace,
+            string hostName,
+            List<string> scripts,
+            out object[] errors,
+            params string[] moduleImports
+        )
         {
             Command command = new Command("Invoke-Command");
             if (!string.IsNullOrEmpty(hostName))
@@ -70,9 +78,14 @@ namespace SolidCP.Providers.Web
                 command.Parameters.Add("ComputerName", hostName);
             }
             RunspaceInvoke runspaceInvoke = new RunspaceInvoke();
-            string str = (moduleImports.Any<string>() ? string.Format("import-module {0};", string.Join(",", moduleImports)) : string.Empty);
+            string str = (
+                moduleImports.Any<string>()
+                    ? string.Format("import-module {0};", string.Join(",", moduleImports))
+                    : string.Empty
+            );
             str = string.Format("{0};{1}", str, string.Join(";", scripts.ToArray()));
-            ScriptBlock baseObject = runspaceInvoke.Invoke(string.Format("{{{0}}}", str))[0].BaseObject as ScriptBlock;
+            ScriptBlock baseObject =
+                runspaceInvoke.Invoke(string.Format("{{{0}}}", str))[0].BaseObject as ScriptBlock;
             command.Parameters.Add("ScriptBlock", baseObject);
             return this.ExecuteShellCommand(runSpace, command, false, out errors);
         }
@@ -82,18 +95,31 @@ namespace SolidCP.Providers.Web
             return this.ExecuteShellCommand(runSpace, cmd, true);
         }
 
-        public Collection<PSObject> ExecuteShellCommand(Runspace runSpace, Command cmd, bool useDomainController)
+        public Collection<PSObject> ExecuteShellCommand(
+            Runspace runSpace,
+            Command cmd,
+            bool useDomainController
+        )
         {
             object[] objArray;
             return this.ExecuteShellCommand(runSpace, cmd, useDomainController, out objArray);
         }
 
-        public Collection<PSObject> ExecuteShellCommand(Runspace runSpace, Command cmd, out object[] errors)
+        public Collection<PSObject> ExecuteShellCommand(
+            Runspace runSpace,
+            Command cmd,
+            out object[] errors
+        )
         {
             return this.ExecuteShellCommand(runSpace, cmd, true, out errors);
         }
 
-        internal Collection<PSObject> ExecuteShellCommand(Runspace runSpace, Command cmd, bool useDomainController, out object[] errors)
+        internal Collection<PSObject> ExecuteShellCommand(
+            Runspace runSpace,
+            Command cmd,
+            bool useDomainController,
+            out object[] errors
+        )
         {
             Log.WriteStart("ExecuteShellCommand", new object[0]);
             List<object> objs = new List<object>();
@@ -141,7 +167,10 @@ namespace SolidCP.Providers.Web
             PSMemberInfo item = result[0].Members["DistinguishedName"];
             if (item == null)
             {
-                throw new ArgumentException("Execution result does not contain DistinguishedName property", "result");
+                throw new ArgumentException(
+                    "Execution result does not contain DistinguishedName property",
+                    "result"
+                );
             }
             string str = item.Value.ToString();
             Log.WriteEnd("GetResultObjectDN", new object[0]);
@@ -161,12 +190,18 @@ namespace SolidCP.Providers.Web
             }
             if (result.Count > 1)
             {
-                throw new ArgumentException("Execution result contains more than one object", "result");
+                throw new ArgumentException(
+                    "Execution result contains more than one object",
+                    "result"
+                );
             }
             PSMemberInfo item = result[0].Members["Identity"];
             if (item == null)
             {
-                throw new ArgumentException("Execution result does not contain Identity property", "result");
+                throw new ArgumentException(
+                    "Execution result does not contain Identity property",
+                    "result"
+                );
             }
             string str = item.Value.ToString();
             Log.WriteEnd("GetResultObjectIdentity", new object[0]);
@@ -191,7 +226,10 @@ namespace SolidCP.Providers.Web
                 }
                 catch (Exception exception)
                 {
-                    Log.WriteError(string.Format("InstallWindowsFeature  {0}", featureName), exception);
+                    Log.WriteError(
+                        string.Format("InstallWindowsFeature  {0}", featureName),
+                        exception
+                    );
                     flag = false;
                 }
             }
