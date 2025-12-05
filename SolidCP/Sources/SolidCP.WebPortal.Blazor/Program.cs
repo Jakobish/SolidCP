@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using SolidCP.WebPortal.Blazor.Data;
+using SolidCP.WebPortal.Blazor.Data.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<NotificationService>();
+builder.Services.AddScoped<SolidCP.WebPortal.Blazor.Services.FeatureFlags>();
 
 var app = builder.Build();
 

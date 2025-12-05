@@ -1,0 +1,401 @@
+@page "/user/account/details"
+@page "/user/details/{UserId:int?}"
+@using SolidCP.WebPortal.Blazor.Data.Services
+@using SolidCP.WebPortal.Blazor.Data.DTOs
+@using SolidCP.WebPortal.Blazor.Components
+@inject IUserService UserService
+@inject NotificationService NotificationService
+@inject NavigationManager Navigation
+
+<PageTitle>User Account Details - SolidCP</PageTitle>
+
+<div class="space-y-6">
+    <div class="flex items-center justify-between">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">User Account Details</h1>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Manage user account information and settings</p>
+        </div>
+        <div class="flex space-x-3">
+            <UiButton Variant="secondary" OnClick="NavigateBack">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Back
+            </UiButton>
+        </div>
+    </div>
+
+    <UiCard>
+        <Header>
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">Account Information</h2>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Update user details and preferences</p>
+                </div>
+            </div>
+        </Header>
+        
+        <ChildContent>
+            @if (isLoading)
+            {
+                <div class="flex items-center justify-center py-8">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                    <span class="ml-2 text-gray-600 dark:text-gray-400">Loading user details...</span>
+                </div>
+            }
+            else if (hasError)
+            {
+                <div class="text-center py-8">
+                    <div class="text-red-600 dark:text-red-400 mb-4">
+                        <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                        </svg>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400">Unable to load user details. Please try again.</p>
+                    <UiButton OnClick="LoadUserData" Variant="primary" Class="mt-4">
+                        Retry
+                    </UiButton>
+                </div>
+            }
+            else if (user != null)
+            {
+                <EditForm Model="user" OnValidSubmit="SaveUser">
+                    <DataAnnotationsValidator />
+                    <div class="space-y-6">
+                        <!-- Account Information -->
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">Basic Information</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                        Username
+                                    </label>
+                                    <div class="bg-gray-100 dark:bg-gray-700 px-3 py-2 rounded-md text-gray-600 dark:text-gray-400">
+                                        @user.Username
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <UiInput Label="Account Number" 
+                                             @bind-Value="user.SubscriberNumber" 
+                                             Placeholder="Enter account number"
+                                             Disabled="@IsReadOnlyAccountNumber" />
+                                </div>
+
+                                <div>
+                                    <UiInput Label="First Name" 
+                                             @bind-Value="user.FirstName" 
+                                             Required="true"
+                                             Placeholder="Enter first name" />
+                                </div>
+
+                                <div>
+                                    <UiInput Label="Last Name" 
+                                             @bind-Value="user.LastName" 
+                                             Required="true"
+                                             Placeholder="Enter last name" />
+                                </div>
+
+                                <div>
+                                    <UiInput Label="Email" 
+                                             @bind-Value="user.Email" 
+                                             Type="email"
+                                             Required="true"
+                                             Placeholder="Enter email address" />
+                                </div>
+
+                                <div>
+                                    <UiInput Label="Secondary Email" 
+                                             @bind-Value="user.SecondaryEmail" 
+                                             Type="email"
+                                             Placeholder="Enter secondary email" />
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                        Mail Format
+                                    </label>
+                                    <select @bind="user.MailFormat" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100">
+                                        <option value="@MailFormatType.Text">Plain Text</option>
+                                        <option value="@MailFormatType.HTML">HTML</option>
+                                    </select>
+                                </div>
+
+                                @if (ShowRoleSelector)
+                                {
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                            Role
+                                        </label>
+                                        <select @bind="user.Role" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100">
+                                            @foreach (var role in availableRoles)
+                                            {
+                                                <option value="@role">@GetRoleDisplayName(role)</option>
+                                            }
+                                        </select>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Account Settings -->
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">Account Settings</h3>
+                            <div class="space-y-4">
+                                @if (ShowDemoCheckbox)
+                                {
+                                    <div class="flex items-center">
+                                        <input id="demo-account" type="checkbox" @bind="user.IsDemo" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded dark:border-gray-600 dark:bg-gray-700">
+                                        <label for="demo-account" class="ml-2 block text-sm text-gray-900 dark:text-gray-100">
+                                            Demo Account
+                                        </label>
+                                    </div>
+                                }
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                        Login Status
+                                    </label>
+                                    <select @bind="user.LoginStatus" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100">
+                                        <option value="@LoginStatusType.Enabled">Enabled</option>
+                                        <option value="@LoginStatusType.Disabled">Disabled</option>
+                                        <option value="@LoginStatusType.LockedOut">Locked Out</option>
+                                    </select>
+                                </div>
+
+                                @if (CanUserChangeMfa)
+                                {
+                                    <div class="space-y-2">
+                                        <div class="flex items-center">
+                                            <input id="mfa-enabled" type="checkbox" @bind="user.MfaEnabled" @oninput="OnMfaChanged" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded dark:border-gray-600 dark:bg-gray-700">
+                                            <label for="mfa-enabled" class="ml-2 block text-sm text-gray-900 dark:text-gray-100">
+                                                Enable Multi-Factor Authentication
+                                            </label>
+                                        </div>
+                                        @if (user.MfaEnabled)
+                                        {
+                                            <p class="text-sm text-gray-600 dark:text-gray-400 ml-6">
+                                                When you log in, a validation code is sent to the primary email address. Enabling an authentication app stops the validation code from being sent by email.
+                                            </p>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Contact Information -->
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">Contact Information</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <UiInput Label="Company Name" 
+                                             @bind-Value="user.CompanyName" 
+                                             Placeholder="Enter company name" />
+                                </div>
+
+                                <div>
+                                    <UiInput Label="Primary Phone" 
+                                             @bind-Value="user.PrimaryPhone" 
+                                             Placeholder="Enter primary phone" />
+                                </div>
+
+                                <div class="md:col-span-2">
+                                    <UiInput Label="Address" 
+                                             @bind-Value="user.Address" 
+                                             Placeholder="Enter street address" />
+                                </div>
+
+                                <div>
+                                    <UiInput Label="City" 
+                                             @bind-Value="user.City" 
+                                             Placeholder="Enter city" />
+                                </div>
+
+                                <div>
+                                    <UiInput Label="State/Province" 
+                                             @bind-Value="user.State" 
+                                             Placeholder="Enter state or province" />
+                                </div>
+
+                                <div>
+                                    <UiInput Label="Zip/Postal Code" 
+                                             @bind-Value="user.Zip" 
+                                             Placeholder="Enter zip code" />
+                                </div>
+
+                                <div>
+                                    <UiInput Label="Country" 
+                                             @bind-Value="user.Country" 
+                                             Placeholder="Enter country" />
+                                </div>
+
+                                <div>
+                                    <UiInput Label="Secondary Phone" 
+                                             @bind-Value="user.SecondaryPhone" 
+                                             Placeholder="Enter secondary phone" />
+                                </div>
+
+                                <div>
+                                    <UiInput Label="Fax" 
+                                             @bind-Value="user.Fax" 
+                                             Placeholder="Enter fax number" />
+                                </div>
+
+                                <div class="md:col-span-2">
+                                    <UiInput Label="Messenger ID" 
+                                             @bind-Value="user.MessengerId" 
+                                             Placeholder="Enter messenger ID" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="flex justify-end space-x-3 pt-6 border-t border-gray-200 dark:border-gray-700">
+                            <UiButton Variant="secondary" OnClick="NavigateBack">
+                                Cancel
+                            </UiButton>
+                            <UiButton Variant="primary" IsLoading="@isSaving" Type="submit">
+                                @if (isSaving)
+                                {
+                                    <text>Saving...</text>
+                                }
+                                else
+                                {
+                                    <text>Save Changes</text>
+                                }
+                            </UiButton>
+                        </div>
+                    </div>
+                </EditForm>
+            }
+        </ChildContent>
+    </UiCard>
+</div>
+
+@code {
+    [Parameter] public int? UserId { get; set; }
+
+    private UserDetailsDto? user;
+    private List<UserRoleType> availableRoles = new();
+    private bool isLoading = true;
+    private bool hasError = false;
+    private bool isSaving = false;
+    private bool CanUserChangeMfa = false;
+    
+    // UI State
+    private bool ShowRoleSelector => !IsReadOnlyAdminAccount;
+    private bool ShowDemoCheckbox => !IsReadOnlyAdminAccount;
+    private bool IsReadOnlyAdminAccount => user?.UserId == GetCurrentUserId();
+    private bool IsReadOnlyAccountNumber => user?.UserId == GetCurrentUserId();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadUserData();
+    }
+
+    private async Task LoadUserData()
+    {
+        isLoading = true;
+        hasError = false;
+        
+        try
+        {
+            user = UserId.HasValue 
+                ? await UserService.GetUserDetailsAsync(UserId.Value) 
+                : await UserService.GetCurrentUserAsync();
+
+            if (user != null)
+            {
+                CanUserChangeMfa = await UserService.CanUserChangeMfaAsync(user.UserId);
+                
+                if (ShowRoleSelector)
+                {
+                    availableRoles = await UserService.GetAvailableRolesAsync(user.UserId, user.Role);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            hasError = true;
+            await NotificationService.ShowError($"Failed to load user details: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task SaveUser()
+    {
+        if (user == null) return;
+
+        isSaving = true;
+        
+        try
+        {
+            var success = await UserService.UpdateUserAsync(user);
+            
+            if (success)
+            {
+                await NotificationService.ShowSuccess("User account updated successfully");
+                NavigateBack();
+            }
+            else
+            {
+                await NotificationService.ShowError("Failed to update user account. Please try again.");
+            }
+        }
+        catch (Exception ex)
+        {
+            await NotificationService.ShowError($"Error saving user: {ex.Message}");
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+
+    private async Task OnMfaChanged(ChangeEventArgs e)
+    {
+        if (user == null) return;
+
+        try
+        {
+            var result = await UserService.UpdateUserMfaAsync(user.UserId, user.MfaEnabled);
+            if (result)
+            {
+                await NotificationService.ShowSuccess($"Multi-Factor Authentication {(user.MfaEnabled ? "enabled" : "disabled")} successfully");
+            }
+        }
+        catch (Exception ex)
+        {
+            await NotificationService.ShowError($"Failed to update MFA: {ex.Message}");
+            // Revert the change
+            user.MfaEnabled = !user.MfaEnabled;
+        }
+    }
+
+    private void NavigateBack()
+    {
+        // In a real implementation, this would navigate to the appropriate page
+        // For now, go to the dashboard
+        Navigation.NavigateTo("/");
+    }
+
+    private int GetCurrentUserId()
+    {
+        // Mock implementation - replace with actual current user ID
+        return 1;
+    }
+
+    private string GetRoleDisplayName(UserRoleType role)
+    {
+        return role switch
+        {
+            UserRoleType.User => "User",
+            UserRoleType.Reseller => "Reseller", 
+            UserRoleType.Administrator => "Administrator",
+            _ => role.ToString()
+        };
+    }
+}
