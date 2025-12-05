@@ -7738,7 +7738,7 @@ textarea.form-control-lg {
   flex-grow: 1 !important;
 }
 
-.flex-shrink-0 {
+.shrink-0 {
   flex-shrink: 0 !important;
 }
 

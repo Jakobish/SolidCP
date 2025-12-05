@@ -5,7 +5,7 @@
     <div class="fixed top-4 right-4 z-50 max-w-sm w-full transform transition-all duration-300 @GetSlideInClass()" role="alert">
         <div class="rounded-lg shadow-lg border @GetBorderClass() p-4">
             <div class="flex items-start">
-                <div class="flex-shrink-0">
+                <div class="shrink-0">
                     @if (Type == NotificationType.Success)
                     {
                         <svg class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -41,7 +41,7 @@
                         <p class="text-sm text-gray-600 mt-1">@Message</p>
                     }
                 </div>
-                <div class="ml-4 flex-shrink-0 flex">
+                <div class="ml-4 shrink-0 flex">
                     <button class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" @onclick="Hide">
                         <span class="sr-only">Close</span>
                         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
