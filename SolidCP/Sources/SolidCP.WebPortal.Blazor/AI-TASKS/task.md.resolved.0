@@ -1,0 +1,10 @@
+- [ ] Assess current UI technology used in **SolidCP.WebPortal** (WebForms, MVC, Razor, etc.)
+- [ ] Choose modern front‑end stack (ASP.NET Core MVC + Razor, Blazor, or SPA) and CSS framework
+- [ ] Define design system (color palette, typography, component library)
+- [ ] Scaffold new UI project within the solution (e.g., `SolidCP.WebPortal.Modern`)
+- [ ] Migrate first low‑risk page to new layout and components
+- [ ] Incrementally migrate remaining pages, replacing legacy controls with modern equivalents
+- [ ] Implement responsive navigation and accessibility improvements
+- [ ] Add visual regression and functional UI tests
+- [ ] Deploy behind feature flag and perform user acceptance testing
+- [ ] Clean up legacy UI files after successful migration

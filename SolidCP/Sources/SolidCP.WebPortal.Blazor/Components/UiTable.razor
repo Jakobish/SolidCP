@@ -1,0 +1,167 @@
+@namespace SolidCP.WebPortal.Blazor.Components
+
+<div class="card overflow-hidden">
+    @if (!string.IsNullOrEmpty(Title) || Description != null)
+    {
+        <div class="px-6 py-4 border-b border-gray-200">
+            @if (!string.IsNullOrEmpty(Title))
+            {
+                <h3 class="text-lg font-medium text-gray-900">@Title</h3>
+            }
+            @if (Description != null)
+            {
+                <div class="mt-2 text-sm text-gray-600">@Description</div>
+            }
+        </div>
+    }
+    
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    @foreach (var column in Columns)
+                    {
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @column.Title
+                            @if (!string.IsNullOrEmpty(column.Description))
+                            {
+                                <span class="ml-1 text-gray-400" title="@column.Description">ⓘ</span>
+                            }
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                @if (Items != null && Items.Any())
+                {
+                    @foreach (var item in Items)
+                    {
+                        <tr class="@GetRowClass(item)">
+                            @foreach (var column in Columns)
+                            {
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    @if (column.Template != null)
+                                    {
+                                        @column.Template(item)
+                                    }
+                                    else if (!string.IsNullOrEmpty(column.PropertyName))
+                                    {
+                                        var value = GetPropertyValue(item, column.PropertyName);
+                                        @GetFormattedValue(value, column.Format)
+                                    }
+                                </td>
+                            }
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="@Columns.Count" class="px-6 py-12 text-center text-sm text-gray-500">
+                            @if (EmptyText != null)
+                            {
+                                @EmptyText
+                            }
+                            else
+                            {
+                                <div class="flex flex-col items-center">
+                                    <svg class="w-12 h-12 text-gray-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2M4 13h2m8-4v4a1 1 0 01-1 1h-2a1 1 0 01-1-1v-4m8 0h-2a1 1 0 00-1 1v2a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 00-1-1z" />
+                                    </svg>
+                                    No data available
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    
+    @if (ShowPagination && TotalItems > PageSize)
+    {
+        <div class="px-6 py-4 border-t border-gray-200 bg-gray-50">
+            <div class="flex items-center justify-between">
+                <div class="text-sm text-gray-700">
+                    Showing @(((CurrentPage - 1) * PageSize) + 1) to @(Math.Min(CurrentPage * PageSize, TotalItems)) of @TotalItems results
+                </div>
+                <div class="flex space-x-2">
+                    <button class="btn btn-ghost" disabled="@(CurrentPage <= 1)" @onclick="() => GoToPage(CurrentPage - 1)">
+                        <svg class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                        Previous
+                    </button>
+                    @for (int i = Math.Max(1, CurrentPage - 2); i <= Math.Min((TotalItems + PageSize - 1) / PageSize, CurrentPage + 2); i++)
+                    {
+                        <button class="btn @(CurrentPage == i ? "btn-primary" : "btn-ghost")" @onclick="() => GoToPage(i)">
+                            @i
+                        </button>
+                    }
+                    <button class="btn btn-ghost" disabled="@(CurrentPage >= (TotalItems + PageSize - 1) / PageSize)" @onclick="() => GoToPage(CurrentPage + 1)">
+                        Next
+                        <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public RenderFragment? Description { get; set; }
+    [Parameter] public IEnumerable<object> Items { get; set; } = new List<object>();
+    [Parameter] public List<TableColumn> Columns { get; set; } = new();
+    [Parameter] public string? EmptyText { get; set; }
+    [Parameter] public bool ShowPagination { get; set; }
+    [Parameter] public int TotalItems { get; set; }
+    [Parameter] public int PageSize { get; set; } = 10;
+    [Parameter] public int CurrentPage { get; set; } = 1;
+    [Parameter] public EventCallback<int> PageChanged { get; set; }
+    [Parameter] public Func<object, string>? RowClassFunc { get; set; }
+
+    private string GetRowClass(object item)
+    {
+        return RowClassFunc?.Invoke(item) ?? "hover:bg-gray-50";
+    }
+
+    private object? GetPropertyValue(object obj, string propertyName)
+    {
+        var property = obj.GetType().GetProperty(propertyName);
+        return property?.GetValue(obj);
+    }
+
+    private string GetFormattedValue(object? value, string? format)
+    {
+        if (value == null) return "";
+        
+        if (string.IsNullOrEmpty(format)) return value.ToString() ?? "";
+        
+        return format.ToLower() switch
+        {
+            "currency" => value is decimal or double or float ? $"${value:0.00}" : value.ToString() ?? "",
+            "date" => value is DateTime dt ? dt.ToString("MMM dd, yyyy") : value.ToString() ?? "",
+            "datetime" => value is DateTime dt2 ? dt2.ToString("MMM dd, yyyy HH:mm") : value.ToString() ?? "",
+            "percentage" => value is decimal or double or float ? $"{value:0.0}%" : value.ToString() ?? "",
+            _ => value.ToString() ?? ""
+        };
+    }
+
+    private async Task GoToPage(int page)
+    {
+        CurrentPage = page;
+        await PageChanged.InvokeAsync(page);
+    }
+
+    public class TableColumn
+    {
+        public string Title { get; set; } = "";
+        public string? PropertyName { get; set; }
+        public string? Format { get; set; }
+        public string? Description { get; set; }
+        public RenderFragment<object>? Template { get; set; }
+    }
+}

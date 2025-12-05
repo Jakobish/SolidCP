@@ -1,0 +1,55 @@
+# Modern UI for SolidCP.WebPortal
+
+## Goal
+Refresh the legacy UI of the **SolidCP.WebPortal** project with a contemporary, responsive, and accessible design while preserving existing server‑side functionality.
+
+## User Review Required
+- **Front‑end stack choice**: ASP.NET Core MVC with Razor Pages **or** Blazor Server. Please confirm which you prefer.
+- **CSS framework**: Tailwind CSS **or** Bootstrap 5. Let us know your preference.
+- **Pilot page**: Identify the first page (e.g., Dashboard, About, Settings) you want to modernize.
+
+## Proposed Changes
+---
+### 1. Project Setup
+- **Create a new UI project** `SolidCP.WebPortal.Modern` targeting .NET 6+.
+- Add reference to the existing `SolidCP.WebPortal` business‑logic assemblies.
+- Configure the project to serve static assets (CSS, JS, images) from the `wwwroot` folder.
+
+### 2. Design System
+- Adopt a modern CSS framework (Tailwind or Bootstrap 5).
+- Define a color palette using HSL variables for easy dark‑mode support.
+- Use Google Font **Inter** for clean typography.
+- Build reusable UI components (cards, tables, modals, toast notifications) as Razor partials or Blazor components.
+
+### 3. Layout & Navigation
+- Implement a responsive layout with a collapsible sidebar and top bar.
+- Replace legacy absolute positioning with CSS Grid/Flexbox.
+- Ensure keyboard navigation and ARIA attributes for accessibility.
+
+### 4. Migrate a Pilot Page
+1. Scaffold a Razor Page that mirrors the selected pilot page’s route.
+2. Re‑implement the page UI using the new design system.
+3. Wire up the existing backend calls (e.g., API services) to the new page.
+4. Run visual regression tests to confirm parity.
+
+### 5. Incremental Migration
+- Repeat step 4 for remaining high‑traffic pages.
+- Gradually retire old `.aspx`/`.ascx` files after successful migration.
+
+### 6. Testing & Validation
+- Add Playwright UI tests for critical admin flows.
+- Perform Lighthouse audits for performance and accessibility after each migration.
+- Deploy behind a feature flag to toggle the new UI.
+
+### 7. Deployment
+- Update CI/CD pipeline to build and publish the new UI project.
+- Use blue‑green deployment to switch traffic after verification.
+
+---
+## Verification Plan
+- **Automated UI tests** (Playwright) covering login, dashboard, and settings pages.
+- **Performance metrics**: Lighthouse scores > 90 for Performance, Accessibility, Best Practices.
+- **User Acceptance**: Collect feedback from a small admin group before full rollout.
+
+---
+*All changes will be confined to the `SolidCP.WebPortal` solution space, leaving other SolidCP components untouched.*

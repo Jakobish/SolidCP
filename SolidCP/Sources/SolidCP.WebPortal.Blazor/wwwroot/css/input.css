@@ -1,9 +1,95 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Fira+Code:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
 
 @layer base {
     html {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Inter', system-ui, sans-serif;
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        @apply text-gray-900 bg-gray-50 antialiased;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        @apply bg-gray-100;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        @apply bg-gray-300 rounded-full;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-gray-400;
+    }
+}
+
+@layer components {
+    /* SolidCP specific component styles */
+    .btn {
+        @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+    }
+    
+    .btn-primary {
+        @apply btn text-white bg-blue-600 border-transparent hover:bg-blue-700 focus:ring-blue-500;
+    }
+    
+    .btn-secondary {
+        @apply btn text-blue-700 bg-blue-100 border-transparent hover:bg-blue-200 focus:ring-blue-500;
+    }
+    
+    .btn-danger {
+        @apply btn text-white bg-red-600 border-transparent hover:bg-red-700 focus:ring-red-500;
+    }
+    
+    .btn-ghost {
+        @apply btn text-gray-700 bg-transparent border-gray-300 hover:bg-gray-50 focus:ring-blue-500;
+    }
+    
+    .card {
+        @apply bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden;
+    }
+    
+    .input {
+        @apply block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
+    }
+    
+    .sidebar-link {
+        @apply flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-200;
+    }
+    
+    .sidebar-link-active {
+        @apply bg-blue-50 text-blue-700 border-r-2 border-blue-500;
+    }
+    
+    .sidebar-link-inactive {
+        @apply text-gray-600 hover:bg-gray-50 hover:text-gray-900;
+    }
+}
+
+@layer utilities {
+    .text-gradient {
+        background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .glass {
+        background: rgba(255, 255, 255, 0.9);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .shadow-colored {
+        box-shadow: 0 4px 16px rgba(59, 130, 246, 0.15);
     }
 }

@@ -1,0 +1,112 @@
+@namespace SolidCP.WebPortal.Blazor.Components
+
+@if (Show)
+{
+    <div class="fixed top-4 right-4 z-50 max-w-sm w-full transform transition-all duration-300 @GetSlideInClass()" role="alert">
+        <div class="rounded-lg shadow-lg border @GetBorderClass() p-4">
+            <div class="flex items-start">
+                <div class="flex-shrink-0">
+                    @if (Type == NotificationType.Success)
+                    {
+                        <svg class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    }
+                    else if (Type == NotificationType.Error)
+                    {
+                        <svg class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    }
+                    else if (Type == NotificationType.Warning)
+                    {
+                        <svg class="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                        </svg>
+                    }
+                    else
+                    {
+                        <svg class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    }
+                </div>
+                <div class="ml-3 w-0 flex-1 pt-0.5">
+                    @if (!string.IsNullOrEmpty(Title))
+                    {
+                        <p class="text-sm font-medium text-gray-900">@Title</p>
+                    }
+                    @if (!string.IsNullOrEmpty(Message))
+                    {
+                        <p class="text-sm text-gray-600 mt-1">@Message</p>
+                    }
+                </div>
+                <div class="ml-4 flex-shrink-0 flex">
+                    <button class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" @onclick="Hide">
+                        <span class="sr-only">Close</span>
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            @if (Actions != null)
+            {
+                <div class="mt-4 flex space-x-2">
+                    @Actions
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public bool Show { get; set; }
+    [Parameter] public NotificationType Type { get; set; } = NotificationType.Info;
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public string? Message { get; set; }
+    [Parameter] public RenderFragment? Actions { get; set; }
+    [Parameter] public int AutoHideDelay { get; set; } = 5000; // milliseconds
+    [Parameter] public EventCallback OnClose { get; set; }
+    [Parameter] public bool ShowProgressBar { get; set; } = true;
+
+    private string GetBorderClass()
+    {
+        return Type switch
+        {
+            NotificationType.Success => "border-green-200 bg-green-50",
+            NotificationType.Error => "border-red-200 bg-red-50",
+            NotificationType.Warning => "border-yellow-200 bg-yellow-50",
+            _ => "border-blue-200 bg-blue-50"
+        };
+    }
+
+    private string GetSlideInClass()
+    {
+        return Show ? "translate-x-0 opacity-100" : "translate-x-full opacity-0";
+    }
+
+    private async Task Hide()
+    {
+        Show = false;
+        await OnClose.InvokeAsync();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Show && AutoHideDelay > 0)
+        {
+            await Task.Delay(AutoHideDelay);
+            await Hide();
+        }
+    }
+
+    public enum NotificationType
+    {
+        Info,
+        Success,
+        Warning,
+        Error
+    }
+}
