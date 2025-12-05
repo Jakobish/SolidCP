@@ -84,6 +84,18 @@ namespace SolidCP.WebPortal.Blazor.Services
         }
 
         /// <summary>
+        /// Get integer configuration value with default
+        /// </summary>
+        public int GetIntFlag(string key, int defaultValue)
+        {
+            var value = _configuration[key];
+            if (string.IsNullOrEmpty(value))
+                return defaultValue;
+
+            return int.TryParse(value, out var result) ? result : defaultValue;
+        }
+
+        /// <summary>
         /// Get comma-separated list as array
         /// </summary>
         private List<string> GetFlagArray(string key)
@@ -119,7 +131,7 @@ namespace SolidCP.WebPortal.Blazor.Services
         /// </summary>
         public static int GetRolloutPercentage(this FeatureFlags flags, string featureKey)
         {
-            return flags.GetFlag($"{featureKey}.RolloutPercentage", 0);
+            return flags.GetIntFlag($"{featureKey}.RolloutPercentage", 0);
         }
 
         /// <summary>

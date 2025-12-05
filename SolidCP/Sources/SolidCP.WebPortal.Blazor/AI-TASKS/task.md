@@ -1,3 +1,5 @@
+# UI Migration Plan
+
 - [x] Assess current UI technology used in **SolidCP.WebPortal** (WebForms, MVC, Razor, etc.)
 - [x] Choose modern front‑end stack (Blazor Server + Tailwind CSS)
 - [/] Define design system (color palette, typography, component library)

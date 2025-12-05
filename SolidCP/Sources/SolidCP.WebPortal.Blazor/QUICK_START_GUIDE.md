@@ -11,15 +11,15 @@
 
 ### ✅ Core Components Available
 
-| Component | Purpose | Key Features |
-|-----------|---------|--------------|
-| `UiButton` | Button interactions | 4 variants, loading states, disabled |
-| `UiCard` | Content containers | Header/body/footer sections |
-| `UiTable` | Data display | Pagination, sorting, custom columns |
-| `UiModal` | Dialog windows | Accessible, focus management |
-| `UiNotification` | User feedback | Toast messages, auto-hide |
-| `UiInput` | Form fields | Validation states, icons |
-| `ThemeToggle` | Theme switching | Dark/light mode, persistence |
+| Component        | Purpose             | Key Features                         |
+|------------------|---------------------|--------------------------------------|
+| `UiButton`       | Button interactions | 4 variants, loading states, disabled |
+| `UiCard`         | Content containers  | Header/body/footer sections          |
+| `UiTable`        | Data display        | Pagination, sorting, custom columns  |
+| `UiModal`        | Dialog windows      | Accessible, focus management         |
+| `UiNotification` | User feedback       | Toast messages, auto-hide            |
+| `UiInput`        | Form fields         | Validation states, icons             |
+| `ThemeToggle`    | Theme switching     | Dark/light mode, persistence         |
 
 ## 🚀 Getting Started
 
@@ -48,7 +48,7 @@ dotnet run
 
 ### 3. Understand the Structure
 
-```
+```bash
 Components/          # All reusable UI components
 ├── UiButton.razor
 ├── UiCard.razor
@@ -191,5 +191,5 @@ npm run build:css  # Rebuild CSS
 
 **Status**: Foundation complete ✅  
 **Next Priority**: Begin legacy page migration  
-**Estimated Time**: 2-4 weeks per major page  
+**Estimated Time**: 2-4 Days per major page  
 **Support**: Review documentation and test thoroughly before proceeding
