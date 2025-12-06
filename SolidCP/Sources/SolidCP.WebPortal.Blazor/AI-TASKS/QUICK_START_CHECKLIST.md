@@ -19,9 +19,12 @@ dotnet run
 
 ### Phase 2: Verify Current Implementation (5 minutes)
 
-```bash
-# Open browser and navigate to:
-# http://localhost:5077                (Main dashboard)
+```markdown
+
+Open browser and navigate to:
+
+[http://localhost:5077](Main dashboard)               
+
 # http://localhost:5077/user/account/details  (User account page)
 # http://localhost:5077/user/details/1  (User details with ID)
 
