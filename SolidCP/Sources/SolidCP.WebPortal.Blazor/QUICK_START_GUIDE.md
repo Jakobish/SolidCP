@@ -41,7 +41,7 @@ dotnet run
 
 ### 2. Test the Implementation
 
-- Open browser to `https://localhost:5001`
+- Open browser to `http://localhost:5077`
 - Test dark mode toggle (top-right corner)
 - Check responsive design on different screen sizes
 - Verify all components on the dashboard work correctly

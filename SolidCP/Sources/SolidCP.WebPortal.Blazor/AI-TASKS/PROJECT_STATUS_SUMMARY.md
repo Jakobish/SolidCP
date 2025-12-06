@@ -210,7 +210,7 @@ public class SpaceService : ISpaceService
 - **Phase 1 Duration**: 3-4 Days
 - **Per Page Migration**: 2-3 hours average
 - **Phase 2 Estimated**: 4 Days
-- **Total Project**: 28 Days (1 months)
+- **Total Project**: 28 Days (1 month)
 
 ### Quality Metrics
 
