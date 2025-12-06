@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using SolidCP.WebPortal.Blazor.Components;
 
 namespace SolidCP.WebPortal.Blazor.Data.Services
@@ -14,6 +16,7 @@ namespace SolidCP.WebPortal.Blazor.Data.Services
                 Title = title ?? "Success",
                 Message = message
             });
+            return Task.CompletedTask;
         }
 
         public Task ShowError(string message, string? title = null)
@@ -24,6 +27,7 @@ namespace SolidCP.WebPortal.Blazor.Data.Services
                 Title = title ?? "Error",
                 Message = message
             });
+            return Task.CompletedTask;
         }
 
         public  Task ShowWarning(string message, string? title = null)
@@ -34,6 +38,7 @@ namespace SolidCP.WebPortal.Blazor.Data.Services
                 Title = title ?? "Warning",
                 Message = message
             });
+            return Task.CompletedTask;
         }
 
         public  Task ShowInfo(string message, string? title = null)
@@ -44,6 +49,7 @@ namespace SolidCP.WebPortal.Blazor.Data.Services
                 Title = title ?? "Information",
                 Message = message
             });
+            return Task.CompletedTask;
         }
     }
 

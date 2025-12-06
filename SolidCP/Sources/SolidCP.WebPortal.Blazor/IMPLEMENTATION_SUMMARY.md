@@ -82,7 +82,7 @@ Created a comprehensive dashboard page demonstrating:
 
 ### File Structure
 
-```
+```text
 SolidCP.WebPortal.Blazor/
 ├── Components/
 │   ├── UiButton.razor          # Button component
