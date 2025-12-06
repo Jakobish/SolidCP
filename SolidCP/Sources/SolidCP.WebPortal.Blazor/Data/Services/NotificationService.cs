@@ -6,7 +6,7 @@ namespace SolidCP.WebPortal.Blazor.Data.Services
     {
         public event EventHandler<NotificationEventArgs>? NotificationRequested;
 
-        public async Task ShowSuccess(string message, string? title = null)
+        public Task ShowSuccess(string message, string? title = null)
         {
             NotificationRequested?.Invoke(this, new NotificationEventArgs
             {
@@ -16,7 +16,7 @@ namespace SolidCP.WebPortal.Blazor.Data.Services
             });
         }
 
-        public async Task ShowError(string message, string? title = null)
+        public Task ShowError(string message, string? title = null)
         {
             NotificationRequested?.Invoke(this, new NotificationEventArgs
             {
@@ -26,7 +26,7 @@ namespace SolidCP.WebPortal.Blazor.Data.Services
             });
         }
 
-        public async Task ShowWarning(string message, string? title = null)
+        public  Task ShowWarning(string message, string? title = null)
         {
             NotificationRequested?.Invoke(this, new NotificationEventArgs
             {
@@ -36,7 +36,7 @@ namespace SolidCP.WebPortal.Blazor.Data.Services
             });
         }
 
-        public async Task ShowInfo(string message, string? title = null)
+        public  Task ShowInfo(string message, string? title = null)
         {
             NotificationRequested?.Invoke(this, new NotificationEventArgs
             {

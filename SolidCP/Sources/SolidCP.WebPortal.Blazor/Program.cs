@@ -2,17 +2,16 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using SolidCP.WebPortal.Blazor.Data;
 using SolidCP.WebPortal.Blazor.Data.Services;
-
+using Sysinfocus.AspNetCore.Components;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<SolidCP.WebPortal.Blazor.Services.FeatureFlags>();
-
+builder.Services.AddSysinfocus();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,6 +29,6 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.MapBlazorHub();
-app.MapFallbackToPage("/_Host");
+app.MapFallbackToPage("/App.razor");
 
 app.Run();
